@@ -1,4 +1,4 @@
-import Columns from './columns/columns';
+import Columns from '../columns/columns';
 import styles from './scss/block.module.scss';
 import Image from 'next/image';
 

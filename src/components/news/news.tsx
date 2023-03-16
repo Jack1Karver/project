@@ -3,7 +3,7 @@ import Container from '../container/container';
 import styles from '../block/scss/block.module.scss';
 import Image from 'next/image';
 
-import Avatar from '../../resources/img/avatar.jpg';
+import Avatar from '../../resources/img/avatar1.jpg';
 import image from '../../resources/img/image.jpg';
 
 const News = () => {

@@ -7,7 +7,7 @@ type LayoutProps = {
   children: ReactElement;
 };
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps):ReactElement => {
   return (
     <>
       <Header />

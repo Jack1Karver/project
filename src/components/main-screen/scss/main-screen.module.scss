@@ -1,6 +1,5 @@
 .main {
   height: 90%;
-  width: 990px;
   @include flex($ai: flex-start, $jc: center);
   margin-bottom: 370px;
 
@@ -15,14 +14,21 @@
   &__block {
     background-color: $c-white;
     color: black;
-    height: 400px;
+    padding-bottom: 32px;
     width: 300px;
+    margin-left: auto;
     border-radius: 10px;
   }
 
-  &__block_title {
-    padding: 32px 0 0px 0;
-    @include flex($ai: center, $jc: center);
+  &__block_text {
+    
+    @include font($fs: 22px, $fy: italic);
+    text-indent: 30px;
+    @include flex($ai: center, $jc: center, $fd: column);
+
+    p{
+      margin-bottom: 0;
+    }
   }
 
   &__form {
@@ -32,6 +38,7 @@
   }  
 
   &__signup {
+    width:100%;
     text-align: center;
 
     &-text {

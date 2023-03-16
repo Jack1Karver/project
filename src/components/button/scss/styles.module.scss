@@ -3,7 +3,7 @@
   background-color: $c-background;
   width: 100%;
   padding: 10px 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid $c-grey;
   color: black;
   cursor: pointer;
@@ -24,8 +24,17 @@
       
     }
   }
+  &--wide{
+    width:300px
+  }
 
   &--md {
-    height: 30px;
+    height: 32px;
+    width: 220px;
+  }
+
+  &--xs{
+    height: 32px;
+    width: 60px;
   }
 }

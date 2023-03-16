@@ -1,24 +1,33 @@
+import { EventHandler } from 'react';
 import styles from './scss/input.module.scss';
 type InputProps = {
-  type: 'checkbox' | 'password' | 'text';
+  type: string;
   placeholder?: string;
   mod?: 'brand' | 'default';
   label?: string;
+  title?: string;
+  maxLength?: number;
+  onChange?: EventHandler<any>
 };
 
-const Input = ({ type, placeholder, label, mod = 'default' }: InputProps) => {
+const Input = (props: InputProps) => {
   return (
     <>
-      {type !== 'checkbox' ? (
-        <input
-          className={`${styles.input} ${mod ? styles[`input--${mod}`] : ''}`}
-          type={type}
-          placeholder={placeholder}
-        />
+      {props.type !== 'checkbox' ? (
+        <>
+          {props.title ? <h3>{props.title}</h3> : ''}
+          <input
+            className={`${styles.input} ${props.mod ? styles[`input--${props.mod}`] : ''}`}
+            type={props.type}
+            placeholder={props.placeholder}
+            maxLength={props.maxLength ? props.maxLength : 1000}
+            onChange={props.onChange}
+          />
+        </>
       ) : (
         <div className={styles.input__checkbox}>
-          <input type={type} />
-          <label>{label}</label>
+          <input type={props.type} />
+          <label>{props.label}</label>
         </div>
       )}
     </>

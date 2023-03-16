@@ -1,0 +1,8 @@
+.signup {
+  @include flex($fd: column);
+
+  &__block {
+    margin-bottom: 48px;
+    width: 300px;
+  }
+}

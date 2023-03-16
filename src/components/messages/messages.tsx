@@ -4,7 +4,7 @@ import Image from 'next/image';
 import avatar from 'src/resources/img/avatar1.jpg';
 import styles from './scss/messages.module.scss';
 import moment from 'moment';
-import Columns from '../block/columns/columns';
+import Columns from '../columns/columns';
 
 const Messages = () => {
   const messages: { name: string; avatar: ReactElement; text: string }[] = [];

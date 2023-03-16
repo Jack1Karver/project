@@ -37,4 +37,11 @@
       border-radius: 50%;
     }
   }
+  &__login{
+    @include flex()
+  }
+
+  &__user{
+    margin-right: 24px;
+  }
 }
