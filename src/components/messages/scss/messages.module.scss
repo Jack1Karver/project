@@ -1,6 +1,6 @@
 .messages {
   &__message {
-    width: 100%;   
+    width: 100%;
     transition: 0.2s ease all;
     border-bottom: 1px solid $c-brand;
     padding: 16px 0;
@@ -21,19 +21,63 @@
     margin-right: 10px;
   }
 
-  &__text{
-    span{
-        display: block;
-        color: $c-grey;
-        padding-top: 10px;
+  &__text {
+    span {
+      display: block;
+      color: $c-grey;
+      padding-top: 10px;
     }
   }
 
-  &__date{
-    
+&__prover{
+  display: none;
+}
+
+&__section {  //добавили
+  display: none;
+}
+&__section .active {  //добавили
+  display: block;
+}
+
+
+  &__tabs {
+    @include flex($fd: row);
+    width: 100%;
   }
 
-  &__content{
- @include flex();
+  .active,
+  &__tab {
+    @include flex($jc: center);
+    background-color: white;
+    width: 100%;
+    border: 1px solid black;
+    transition: 0.2s ease-in-out background-color;
+    height: 32px;
+
+    &:hover {
+      background-color: $c-brand;
+      color: $c-white;
+    }
+    &:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+    &:last-child{
+      border-radius: 0 5px 5px 0;
+    }
+
+    &--active {
+      background-color: blue;
+    }
+  }
+
+  &__title {
+    height: '40px';
+    background-color: #132d8c;
+    width: '100%';
+    text-align: 'center';
+  }
+  &__content {
+    @include flex();
   }
 }

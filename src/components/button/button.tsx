@@ -9,6 +9,7 @@ type ButtonProps = {
 };
 
 const Button = ({ size, content, mod, onClick }: ButtonProps) => {
+
   return (
     <button
       className={`${styles.button} ${mod ? styles[`button--${mod}`] : ''} ${styles[`button--${size}`]}`}
