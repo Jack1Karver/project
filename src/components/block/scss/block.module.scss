@@ -16,6 +16,7 @@
 .profile {
   @include flex($fd: row, $jc: space-around, $ai: flex-start);
   gap: 80px;
+  width: 100%;
 
   h2 {
     margin-top: 0px;

@@ -25,7 +25,6 @@ class UserStore {
   };
 
   setUserAuthorized = (user: IUserExtended) => {
-    console.log(user);
     this.userAuthorized = user;
   };
 

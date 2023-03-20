@@ -1,10 +1,6 @@
 
 export const headerLabels = [
-    // {
-    //     id: 1,
-    //     title: 'Главная',
-    //     link: '/news',
-    // },
+
     {
         id: 2,
         title: 'Начать обмен',
