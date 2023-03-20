@@ -6,9 +6,16 @@ import { useMemo } from 'react';
 import UserAuthorizedStore from '../../stores/user.authorized.store';
 import Button from '../button/button';
 import Router from 'next/router';
+import { COMMON_LABELS } from '../../config/labels.config';
+import ButtonLocalization from '../button/button-localization';
+import { useLocale } from '../../hooks/use-locale';
+
 
 const Header = observer(() => {
-  const {userAuthorized, logout} = useMemo(()=> new UserAuthorizedStore, []);
+  const { userAuthorized, logout } = useMemo(() => new UserAuthorizedStore(), []);
+
+
+
 
   return (
     <header className={styles.header}>
@@ -21,16 +28,19 @@ const Header = observer(() => {
         <div className={styles.header__menu}>
           <Menu />
         </div>
-        {userAuthorized ? (
-          <div className={styles.header__login}>
-            <Link href={'/profile'}>
-              <a className={styles.header__user}>{userAuthorized.userName}</a>
-            </Link>
-            <Button size={'xs'} onClick={logout} content={'Выйти'} />
-          </div>
-        ) : (
-          <Button size={'xs'} onClick={() => Router.push('/login')} content={'Войти'} />
-        )}
+        <ButtonLocalization/>
+        <div className={styles.header__login}>
+          {userAuthorized ? (
+            <>
+              <Link href={{pathname:'/profile/[userName]', query:{userName: `${userAuthorized.userName}`}}}>
+                <a className={styles.header__user}>{userAuthorized.userName}</a>
+              </Link>
+              <Button size={'xs'} onClick={logout} content={COMMON_LABELS.logout} />
+            </>
+          ) : (
+            <Button size={'xs'} onClick={() => Router.push('/login')} content={COMMON_LABELS.login} />
+          )}
+        </div>
       </div>
     </header>
   );

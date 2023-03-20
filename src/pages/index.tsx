@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Sign In | Book2Book</title>
+        <title>Главная | Book2Book</title>
       </Head>
       <Layout>
         <MainScreen />

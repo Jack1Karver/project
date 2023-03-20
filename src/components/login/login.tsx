@@ -5,9 +5,10 @@ import Input from '../input/input';
 import styles from './scss/login.module.scss';
 import { useMemo } from 'react';
 import FormStore from '../../stores/form.store';
-import { LOGIN_FIELDS } from '../../config/fields';
+import { LOGIN_FIELDS } from '../../config/fields.config';
 import { loginRequest } from '../../requests/auth.requests';
 import { ILoginUser } from '../../models/user.model';
+import { COMMON_LABELS } from '../../config/labels.config';
 
 const Login = () => {
   const formStore = useMemo(() => new FormStore(LOGIN_FIELDS), []);
@@ -19,37 +20,35 @@ const Login = () => {
   const login = async () => {
     const fields = formStore.getFieldsAccumulator();
     const result = await loginRequest(fields as ILoginUser);
-    localStorage.setItem('Authorization', result?.token!)
-    Router.push('/')
+    localStorage.setItem('Authorization', result?.token!);
+    Router.push('/');
   };
 
   return (
     <>
       <div className={styles.login}>
-      
-            <div className={styles.login__block}>
-              <h3 className={styles.login__title}>Войти</h3>
-              <div className={styles.login__form}>
-                {Object.keys(formStore.fields).map(key => {
-                  const params = formStore.fieldsParams[key];
-                  return (
-                    <Input
-                      key={key}
-                      type={params.type}
-                      placeholder={params.placeholder}
-                      title={params.title}
-                      onChange={e => formStore.setField(formStore.fields[key].name, e.target.value)}
-                    />
-                  );
-                })}
-                <Button mod="blue" content={'Войти'} onClick={login} />
-                <div className={styles.login__signup}>
-                  <span className={styles['login__signup-text']}>Нет аккаунта?</span>
-                  <Button mod="blue" content={'Регистрация'} onClick={goToSignUp} />                  
-                </div>
-              </div>
+        <div className={styles.login__block}>
+          <h3 className={styles.login__title}>{COMMON_LABELS.login}</h3>
+          <div className={styles.login__form}>
+            {Object.keys(formStore.fields).map(key => {
+              const params = formStore.fieldsParams[key];
+              return (
+                <Input
+                  key={key}
+                  type={params.type}
+                  placeholder={params.placeholder}
+                  title={params.title}
+                  onChange={e => formStore.setField(formStore.fields[key].name, e.target.value)}
+                />
+              );
+            })}
+            <Button mod="blue" content={COMMON_LABELS.login} onClick={login} />
+            <div className={styles.login__signup}>
+              <span className={styles['login__signup-text']}>{COMMON_LABELS.haveAccount}</span>
+              <Button mod="blue" content={COMMON_LABELS.register} onClick={goToSignUp} />
             </div>
-          
+          </div>
+        </div>
       </div>
     </>
   );

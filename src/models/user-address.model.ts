@@ -7,5 +7,5 @@ export interface IUserAddress {
   addrHouse: string;
   addrStructure?: string;
   addrApart?: string;
-  isDefault: boolean;
+  isDefault?: boolean;
 }

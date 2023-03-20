@@ -4,34 +4,32 @@ import Container from '../container/container';
 import { useEffect, useMemo, useState } from 'react';
 import UserStore from '../../stores/user.authorized.store';
 import FormStore from '../../stores/form.store';
-import { USER_FIELDS } from '../../config/fields';
+import { USER_FIELDS } from '../../config/fields.config';
 import Input from '../input/input';
 import { observer } from 'mobx-react';
 import moment from 'moment';
+import { IUserExtended } from '../../models/user.model';
 
-const ProfileBlock = observer(() => {
+type ProfileBlockProps = {
+  user: IUserExtended;
+};
+
+const ProfileBlock = observer(({ user }: ProfileBlockProps) => {
   const formStore = useMemo(() => new FormStore(USER_FIELDS), []);
-  const [{ userAuthorized }] = useState(() => new UserStore());
 
-  // useEffect(() => {
-  //   console.log(formStore.fields);
-  //   const user = userAuthorized;
-
-  //   if (user) {
-  //         user.createdAt = moment(userAuthorized.createdAt).format("DD-MM-YYYY");
-  //     Object.keys(user).map(key => {
-  //       if (formStore.fields[key]) {
-  //         formStore.setField(key, user[key]);
-  //       }
-  //     });
-  //   }
-  // }, [userAuthorized]);
+  const userAuth = Object.assign({}, user);
+  userAuth.createdAt = moment(user.createdAt, 'YYYY-MM-DD').format('DD-MM-YYYY');
+  Object.keys(userAuth).map(key => {
+    if (formStore.fields[key]) {
+      formStore.setField(key, userAuth[key]);
+    }
+  });
 
   return (
     <div className={styles.profile}>
-      <Columns
-        left={<></>}
-        right={
+      <aside className={styles.profile__aside}>
+        
+        </aside> 
           <Container>
             <div className={styles.profile__block}>
               <h1>Профиль</h1>
@@ -44,8 +42,8 @@ const ProfileBlock = observer(() => {
                       type={params.type}
                       placeholder={params.placeholder}
                       title={params.title}
-                      value={formStore.fields[key].value ? formStore.fields[key].value : ''}
-                      // disabled={params.disabled}
+                      defaultValue={formStore.fields[key].value ? formStore.fields[key].value : undefined}
+                      disabled={params.disabled}
                       onChange={e => formStore.setField(formStore.fields[key].name, e.target.value)}
                     />
                   );
@@ -53,8 +51,7 @@ const ProfileBlock = observer(() => {
               </div>
             </div>
           </Container>
-        }
-      />
+        
     </div>
   );
 });

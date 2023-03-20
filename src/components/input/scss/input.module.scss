@@ -7,6 +7,15 @@
   border: 1px solid $c-grey;
   color: black;
 
+  &__title{
+    margin-bottom: 5px;
+  }
+
+  &--disabled{
+    color: $c-grey;
+    cursor:not-allowed;
+  }
+
   &__checkbox {
     justify-content: flex-start;
     width: 100%;

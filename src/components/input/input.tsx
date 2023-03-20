@@ -1,33 +1,35 @@
 import { EventHandler } from 'react';
 import styles from './scss/input.module.scss';
+import ErrorMessage from './error-message/error-message';
 type InputProps = {
   type: string;
   placeholder?: string;
   mod?: 'brand' | 'default';
   label?: string;
   title?: string;
-  maxLength?: number;
   onChange?: EventHandler<any>;
-  value?: string;
+  defaultValue?: string;
   disabled?: boolean;
+  error?: string;
+
 };
 
 const Input = (props: InputProps) => {
   return (
     <>
       {props.type !== 'checkbox' ? (
-        <>
-          {props.title ? <h3>{props.title}</h3> : ''}
+        <div className={styles.input__block}>
+          {props.title ? <h3 className={styles.input__title}>{props.title}</h3> : ''}
           <input
-            className={`${styles.input} ${props.mod ? styles[`input--${props.mod}`] : ''}`}
+            className={`${styles.input} ${props.mod ? styles[`input--${props.mod}`] : ''} ${props.disabled ? styles[`input--disabled`]:''}`}
             type={props.type}
             placeholder={props.placeholder}
-            maxLength={props.maxLength ? props.maxLength : 1000}
             onChange={props.onChange}
             disabled={props.disabled ? props.disabled : false}
-            // dangerouslySetInnerHTML={{ __html: props.value ? props.value : '' }}
+            defaultValue={props.defaultValue ? props.defaultValue : undefined}
           />
-        </>
+          {props.error && <ErrorMessage error={props.error}/>}
+        </div>
       ) : (
         <div className={styles.input__checkbox}>
           <input type={props.type} />
