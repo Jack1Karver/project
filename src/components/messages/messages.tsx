@@ -7,54 +7,74 @@ import moment from 'moment';
 import Columns from '../columns/columns';
 import { action } from 'mobx';
 import React, { useRef, useEffect} from 'react';
-// import Tab, { Container } from 'react-bootstrap/lib/Tab'
+import Tabs1 from '../tabs/tabs1';
+import Friends from '../friends/friends';
+import Exchange from '../exchange/exchange';
+import Delivery from '../delivery/delivery';
+import Receiving from '../receiving/receiving';
 
+
+export enum TabType {
+  exchange = 'exchange',
+  receiving = 'receiving',
+  delivery = 'delivery',
+}
+
+export enum TabTypeName {
+  exchange = 'Хочу обменять',
+  receiving = 'Хочу получить',
+  delivery = 'Адрес доставки',
+}
 
 const Messages = () => {
- // const [tabElemennt, tabActiveElemennt] = useState(null)
-//let showElem = React.
-//   function showMe(i){
-//     tabActiveElemennt(i)
-//   }
+  const [activeTab, setActiveTab] = useState('');
 
-// function showMe(){
-//   let tabs = document.getElementsByClassName('__tab');
-//   let sections = document.getElementsByClassName('__section');
-  
-//   for (let i = 0; i < tabs.length; i++) {
-//     tabs[i].addEventListener('click', tabclick) 
-//     console.log(tabs[i])
-//   }
+  function showMe(type: string) {
+    setActiveTab(type);
+  }
 
-   //function tabclick() {
-  //   let tab = event.target;
-  //   let tabId = tab.dataset.id;
-
-  //   for (let k = 0; k < tabs.length; k++) {
-  //       tabs[k].classList.remove('active');
-  //       tabs[tabId - 1].classList.add('active');
-
-  //       sections[k].classList.remove('active');
-  //       sections[tabId - 1].classList.add('active');
-
-  //   }
-  // }
-//}
-
+  function getTabs() {
+    const tabs = [];
+    for (let key in TabType) {
+      const className =
+        activeTab === key ? `${styles.messages__tab} ${styles.messages__tabActive}` : styles.messages__tab;
+      tabs.push(
+        <li key={key} className={className} onClick={() => showMe(key)}>
+          {TabTypeName[key]}
+        </li>
+      );
+    }
+    return tabs;
+  }
   return (
     <>
-    
-    <ul className={styles.messages__tabs}>
-        <li className={styles.messages__tab}  data-id="1" >tab1</li>
-        <li className={styles.messages__tab} data-id="2" >tab2</li>
-        <li className={styles.messages__tab} data-id="3" >tab3</li>
-    </ul>
-    <div className={styles.messages__output}>
-        <section className={styles.messages__section_active}>section1</section>
-        <section className={styles.messages__section}>section2</section>
-        <section className={styles.messages__section}>section3</section>
-    </div>
-    </>
+     <h1 style={{textAlign:'center'}}>Бланк обмена</h1>
+      <Container>
+        <>
+          <ul className={styles.messages__tabs}>{getTabs()}</ul>
+          <div className={styles.messages__output}>
+            {activeTab === TabType.delivery && <Delivery className={styles.messages__section_active} />}
+            {activeTab === TabType.exchange && <Exchange className={styles.messages__section_active} />}
+            {activeTab === TabType.receiving && <Receiving className={styles.messages__section_active} />}
+          </div>
+        </>
+      </Container>
+      </>
+
+//  //</Container>   <ul className={styles.messages__tabs}>{getTabs()}</ul>
+
+//     {/* <ul className={styles.messages__tabs}>
+//         <li className={styles.messages__tab}  data-id="1" >Хочу обменять</li>
+//         <li className={styles.messages__tab} data-id="2" >Хочу получить</li>
+//         <li className={styles.messages__tab} data-id="3" >Адрес доставки</li>
+//     </ul>
+//     <div className={styles.messages__output}>
+//         <section className={styles.messages__section_active}>section1</section>
+//         <section className={styles.messages__section}>section2</section>
+//         <section className={styles.messages__section}>section3</section>
+//     </div>
+//     <Tabs1 /> */}
+//    // </>
     
   );
 };

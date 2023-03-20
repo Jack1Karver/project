@@ -82,3 +82,79 @@ border-bottom: 1px solid $c-brand;
   border-radius: 50%;
   margin-bottom: 10px;
 }
+
+
+
+ .inlineBlock { 
+  height: 500px;
+  padding: 20px;
+  background-color: $c-white;
+  border-radius: 10px;
+  margin-bottom: 30px;
+
+  h4 {
+    margin-top: -10px;
+    margin-bottom: -16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $c-brand;
+  }
+  }
+
+  .inlineBlock1 { 
+    position: relative;
+    width:250px; 
+    height:450px; 
+    background: #e1e3e6; 
+    float:left; 
+    margin: 0 15px 15px 0; 
+    text-align:center;
+    padding: 20px;
+    }
+
+    .inlineBlock2 { 
+      position: relative;
+      width:650px; 
+      height:450px; 
+      background: #e1e3e6; 
+      float:left; 
+      margin: 0 15px 15px 0; 
+      text-align:center;
+      padding: 20px;
+      }
+
+      .text3{
+        font-size: 2.1ch;
+        top: 40px;
+        margin: 10px -1px 0px -10px;
+        padding: 2px;
+        display: block;
+        position: relative;
+        text-align: left;
+      }
+
+      .col3 {
+        height: 100px;
+        width: 33.333%; /* Можно задать любую другую ширину блока */
+        background: grey;
+        margin: .5rem;
+      }
+      
+      .row {
+        height: 700px;
+        width: 1800px;
+        // display: flex;
+        // flex-flow: row nowrap;
+        flex-direction: column;
+      }
+
+      .text4{
+        font-size: 2.1ch;
+        margin: 0px;
+        padding: 2px;
+        display: block;
+        position: relative;
+        text-align: left;
+      }
+
+
+

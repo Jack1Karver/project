@@ -9,85 +9,42 @@ import moment from 'moment';
 import Container from '../container/container';
 
 const ProfileBlock = () => {
-  const profileStats = [
-    {
-      label: 'Birth date',
-      value: moment('28-02-2001', 'DD-MM-YYYY').format('Do MMM YYYY'),
-    },
-    {
-      label: 'Workplace',
-      value: 'PSUTI',
-    },
-    {
-      label: 'Place of study',
-      value: 'PSUTI',
-    },
-  ];
+  return (<>
+  <div className={styles.inlineBlock}>
 
-  return (
-    <>
-      <div className={styles.profile}>
-        <Container>
-          <div className={styles.profile__block}>
-            <img className={styles.avatar} src={Avatar.src} width={'256px'} height={'256px'} />
-            <Button mod={'blue'} size={'wide'} content={'Change Photo'} />
-          </div>
-        </Container>
-        <div>
-          <div className={styles.profile__block}>
-            <div className={styles.profile__description}>
-              <h2>Admin Admin</h2>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
-              </span>
-              <div className={styles.profile__tabs}>
-                <Columns
-                  left={profileStats.map((stat, key) => {
-                    return (
-                      <div
-                        className={`${styles.profile__stat} ${styles['profile__stat--grey']}`}
-                      >{`${stat.label}:`}</div>
-                    );
-                  })}
-                  right={profileStats.map((stat, key) => {
-                    return <div className={styles.profile__stat}>{`${stat.value}`}</div>;
-                  })}
-                />
-              </div>
-            </div>
-          </div>
-          <div className={`${styles.profile__block} ${styles.profile__news}`}>
-            <h4>Records</h4>
-            <div className={`${styles.profile__content}  ${styles['profile__content--profile']}`}>
-              <div className={styles.profile__rechead}>
-                <Image className={styles.avatar} src={Avatar} width={'32px'} height={'32px'} />
-                <span className={styles.profile__name}>{'Admin Admin'}</span>
-              </div>
-              <br />
-              <span className={styles.profile__text}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
-              </span>
-              <Image src={image} />
-            </div>
-            <div className={`${styles.profile__content}  ${styles['profile__content--profile']}`}>
-              <div className={styles.profile__rechead}>
-                <Image className={styles.avatar} src={Avatar} width={'32px'} height={'32px'} />
-                <span className={styles.profile__name}>{'Admin Admin'}</span>
-              </div>
-              <br />
-              <span className={styles.profile__text}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
-              </span>
-              <Image src={image} />
-            </div>
-          </div>
-        </div>
+    <div id="line_block" className={styles.inlineBlock1}>
+      <h2>Смелый заяц</h2> 
+      <span className={styles.text3}>Предложение для обмена</span>
+      <span className={styles.text3}>Хочу обменять</span>
+      <span className={styles.text3}>Хочу получить</span>
+      <span className={styles.text3}>Активные обмены</span>
+      <span className={styles.text3}>Отзывы на книги</span>
+      <span className={styles.text3}>Личные данные</span>
+      <span className={styles.text3}>Сообщения</span>
+      <span className={styles.text3}>Выход</span>
+    </div>
+
+    <div id="line_block" className={styles.inlineBlock2}>
+      <div className={styles.row}>
+        <span className={styles.text4} >Полное совпадение</span>
+        <div className={styles.col3}></div>
+
+        <span className={styles.text4}>Частичное совпадение</span>
+        <div className={styles.col3}></div>
+
+        <span className={styles.text4}>Другие интересные приложения</span>
+        <div className={styles.col3}></div>
       </div>
-    </>
-  );
+      
+      
+      
+      
+    </div> 
+
+
+  </div>
+  </>);
+  
 };
 
 export default ProfileBlock;
