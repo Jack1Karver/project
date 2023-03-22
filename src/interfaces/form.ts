@@ -5,7 +5,7 @@ export type Field = {
   type: fieldTypesEnum;
   validate?: 'number' | '';
   placeholder?: string;
-  title: string;
+  title?: string;
   description?: string;
   value?: string;
   disabled?: boolean;

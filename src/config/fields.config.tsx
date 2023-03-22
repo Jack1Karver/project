@@ -1,6 +1,6 @@
 import { fieldTypesEnum } from '../enums/field-types.enum';
 import { COMMON_LABELS } from './labels.config';
-import { EMAIL_REGEX, PASSWORD_REGEX } from './regex.config';
+import { EMAIL_REGEX, ISBN_REGEX, PASSWORD_REGEX, TEXT_REGEX } from './regex.config';
 
 export const SIGN_UP_FIELDS = {
   name: {
@@ -160,3 +160,65 @@ export const USER_FIELDS = {
     disabled: true,
   },
 };
+
+export const AUTHOR_FIELDS = {
+
+  firstName: {
+    type: fieldTypesEnum.text,
+    title: 'Имя',
+    require: true,
+    pattern: TEXT_REGEX,
+    error: 'Только символы кириллицы и латинницы',
+    length: {
+      max: 20,
+      error: 'Не более 20 символов'
+    }
+  },
+  lastName: {
+    type: fieldTypesEnum.text,
+    title: 'Фамилия',
+    require: true,
+    pattern: TEXT_REGEX,
+    error: 'Только символы кириллицы и латинницы',
+    length: {
+      max: 50,
+      error: 'Не более 50 символов'
+    }
+  }
+}
+
+
+export const BOOK_FIELDS={
+  bookName:{
+    type: fieldTypesEnum.text,
+    title: 'Название книги',
+    require: true,
+    length: {
+      max: 50,
+      error: 'Не более 50 символов'
+    }
+  }
+}
+
+export const OFFER_FIELDS = {
+  ISBN:{
+    type: fieldTypesEnum.text,
+    title: 'ISBN',
+    require: false,
+    pattern: ISBN_REGEX,
+    error: 'Только цифры и знак "-"',
+    length:{
+      max: 13,
+      error: 'Не более 13 символов'
+    }
+  },
+  yearPublishing:{
+    type: fieldTypesEnum.number,
+    title: 'Год издания',
+    require: true,
+    length:{
+      max: 4,
+      error: 'Не более 4 символов'
+    }
+  }
+}

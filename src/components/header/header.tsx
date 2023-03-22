@@ -14,9 +14,6 @@ import { useLocale } from '../../hooks/use-locale';
 const Header = observer(() => {
   const { userAuthorized, logout } = useMemo(() => new UserAuthorizedStore(), []);
 
-
-
-
   return (
     <header className={styles.header}>
       <div className={styles.header__content}>
@@ -26,7 +23,7 @@ const Header = observer(() => {
           </a>
         </Link>
         <div className={styles.header__menu}>
-          <Menu />
+          <Menu user={userAuthorized}/>
         </div>
         <ButtonLocalization/>
         <div className={styles.header__login}>

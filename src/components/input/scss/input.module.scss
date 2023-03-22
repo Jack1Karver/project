@@ -7,14 +7,32 @@
   border: 1px solid $c-grey;
   color: black;
 
+  &--wide{
+    width:100%
+  }
+
   &__title{
     margin-bottom: 5px;
+
+    &--small{
+      font-size: 14px;
+    }
+
+    &--disabled{
+      color: $c-grey;
+    }
   }
 
   &--disabled{
     color: $c-grey;
+    background-color: $c-background;
     cursor:not-allowed;
   }
+
+  &__block{
+    margin-bottom: 12px;
+  }
+
 
   &__checkbox {
     justify-content: flex-start;

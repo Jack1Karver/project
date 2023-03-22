@@ -1,69 +1,39 @@
-.form {
-    margin: 20px;
-    background-color: #e1e3e6;
-    width: 96%;
-    border: 1px solid black;
-    height: 450px;
-    position: relative
+.exchange{
+
+   @include flex($fd: row, $ai: flex-start);
+
+   &__buttonBlock{
+      @include flex($fd: row);
+      width:100%;
+   }
+
+   &__button{
+      margin-left:auto;
+   }
+
+   &__forms{
+      width:40%;
+   }
+
+   &__formBlock{
+      padding-bottom: 12px;
+      &:first-child{
+         border-bottom: 1px solid $c-background;
+      }
+      
+   }
+
+   &__tree{
+      list-style-type: none;
+   }
+
+   &__icon{
+      padding: 0;
+      border: none;
+      background-color: transparent;
+   }
+
+   &__tree{
+      padding: 20px 0 0 20px;
+   }
 }
-.form1 {
-    float: none;
-    margin:20px;
-    background-color: white;
-    width: 46%; 
-    border: 1px solid black;
-    height: 130px
- }
-
- .form2{
-    float: none;
-    padding:3px;
-    margin:20px;
-    background-color: white;
-    width: 46%; 
-    border: 1px solid black;
-    height: 130px;
- }
-
- .form3{
-    float:right; padding:3px;
-    margin:-300px 20px; 
-    background-color: white;
-    width: 46%; 
-    border: 1px solid black; 
-    height: 350px
- }
-
- .kategoty{
-    padding:5px 5px; 
-    display:flex; 
-    border:40px
- }
-
- .kategoty_text1{
-    margin: 10px 5px;
-    background: white;
- }
-
- .kategoty_text2{
-    margin: 10px 5px;
-    width: 351px;
-    background:white;
- }
-
- .kategoty_text3{
-    margin: -5px 5px;
-    display: flex;
- }
-
- .button{
-    position: absolute;
-    border-radius: 2px;
-    width: 75px;
-    height: 30px;
-    right: 20px;
-    top: 390px;
-    // margin: 75px 550px;
-    color: white;
-    background-color: #132d8c;
- }

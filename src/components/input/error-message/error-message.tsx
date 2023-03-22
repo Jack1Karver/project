@@ -7,6 +7,5 @@ type ErrorMessageProps = {
 };
 
 export default function ErrorMessage({ error }: ErrorMessageProps): ReactElement {
-  console.log(error)
   return <span className={styles['error-message']}>{error}</span>;
 }

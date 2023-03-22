@@ -1,71 +1,67 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import styles from './scss/delivery.module.scss';
 import Button from '../button/button';
+import Input from '../input/input';
+import Container from '../container/container';
+import FormStore from '../../stores/form.store';
+import { ADDRESS_FIELDS } from '../../config/fields.config';
+import InputBlock from '../input/input-block';
+import { setWish } from '../../requests/wish.request';
+import UserStore from '../../stores/user.authorized.store';
+import { IUserAddress } from '../../models/user-address.model';
+import { observer } from 'mobx-react';
+import CheckboxStore from '../../stores/checkbox.store';
 interface DeliveryProps {
-  className: string;
+  setActive: (key: number)=>void
+  checkedStore: CheckboxStore;
 }
-const delivery = ({ className }: DeliveryProps) => {
- return (
-    <section className={className}>
-      <form className={styles.form}>
-        <form id="form1" className={styles.forms}>
-          <label>
-            <span className={styles.kategoty}>Город*</span>
-            <input className={styles.kategoty_text1} type="text" placeholder="Москва" />
-            <span className={styles.kategoty_text3}>Улица*</span>
-            <input className={styles.kategoty_text2} type="text" placeholder="Название улицы" />
-            
-            <div>
-              <span style={{margin:'0px 0px  0px -10px', padding:'15px'}}>Строение*</span>
-              <span style={{margin:'0px 0px  0px -10px', padding:'67px'}}>Дом*</span>
-              <span style={{margin:'0px 0px  0px -10px', padding:'50px'}}>Квартира*</span>
-            </div>
-            
-            <div>    
-              <input className={styles.kategoty_text1} type="number" placeholder="Номер" />
-              <input className={styles.kategoty_text1} type="number"  placeholder="Дом" /> 
-              <input className={styles.kategoty_text1} type="text" />
-            </div>
-            
-            <div>
-            <span className={styles.kategoty}>Индекс*</span>
-            <input className={styles.kategoty_text1} type="text"  placeholder="Индекс" />
-            </div>
+const delivery = observer(({ setActive, checkedStore }: DeliveryProps) => {
+  const addressFormStore = useMemo(()=>new FormStore(ADDRESS_FIELDS), [])
+  const [defaultChecked, setDefaultAddress] = useState<boolean>(false)
+  const [isDefault, setIsDefault] = useState<boolean>(false)
+  const {userAuthorized} = useMemo(()=> new UserStore, [])
+  console.log(checkedStore.checked)
 
-            <div>
-            <input type="checkbox" id="chec1" name="chec1"></input>
-            <label>Сделать адресом по умолчанию</label>
-            </div>
-          </label>  
-        </form>
+  const useDefault = ()=>{
+    setDefaultAddress(!defaultChecked)
+  }
 
-        <form id="form2" className={styles.forms2}>
-          <label>
-            <span className={styles.kategoty}>Фамилия*</span>
-            <input className={styles.kategoty_text1} type="text" placeholder="Фамилия" />
-            <span className={styles.kategoty_text3}>Имя*</span>
-            <input className={styles.kategoty_text2} type="text" placeholder="Имя" />
-            <span className={styles.kategoty_text3}>Отчество (при наличии)*</span>
-            <input className={styles.kategoty_text2} type="text" placeholder="Отчество" />
-          </label>
-        </form>
+  const setDefault = ()=>{
+    setIsDefault(!isDefault)
+  }
 
-        <button className={styles.button2}> Назад </button>
-        <button className={styles.button}>Подтвердить данные</button>
+  const goNext = () => {
+    if(!userAuthorized){
+      alert('Чтобы продолжить авторизуйтесь')
+      return
+    }
+    const address = addressFormStore.getFieldsAccumulator() as IUserAddress;
+    if(defaultChecked){
+      address.isDefault=isDefault;
+    }
+    setWish(userAuthorized.id!, checkedStore.checked, address, defaultChecked)
+  };
+  
+  const goBack = () => {
+    setActive(0);
+  };
 
-        <>
-           {/* <Button size={'xs'} onClick={()=>Router.push('/exchange')} content={'Далее'} />  */}
-          {/* <button className={styles.button}>Далее</button> */}
-          
-      </>
-      </form>
+  return (
+    <div className={styles.delivery}>
 
-      
-      {/* http://javascript.ru/ui/tree */}
-    </section>
-
-    
+        <div>
+          <Input type ={'checkbox'} label ={'Использовать основной адрес'} onChange={useDefault}/>
+        </div>
+        {<div className={styles.delivery__fields}>
+        <InputBlock disabled ={defaultChecked}formStore={addressFormStore}/>
+        <Input disabled = {defaultChecked} type ={'checkbox'} label = {'Сделать основным'} onChange={setDefault}/>
+        </div>}
+        <div className={styles.delivery__buttonBlock}>
+        <Button content={'Назад'} onClick={goBack} size={'sm'} mod={'blue'} />
+        <Button content={'Подтвердить'} onClick={goNext} size={'sm'} mod={'blue'} />
+      </div>
+    </div>
   );
-};
+});
 
 export default delivery;

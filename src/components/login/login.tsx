@@ -9,6 +9,7 @@ import { LOGIN_FIELDS } from '../../config/fields.config';
 import { loginRequest } from '../../requests/auth.requests';
 import { ILoginUser } from '../../models/user.model';
 import { COMMON_LABELS } from '../../config/labels.config';
+import InputBlock from '../input/input-block';
 
 const Login = () => {
   const formStore = useMemo(() => new FormStore(LOGIN_FIELDS), []);
@@ -30,18 +31,7 @@ const Login = () => {
         <div className={styles.login__block}>
           <h3 className={styles.login__title}>{COMMON_LABELS.login}</h3>
           <div className={styles.login__form}>
-            {Object.keys(formStore.fields).map(key => {
-              const params = formStore.fieldsParams[key];
-              return (
-                <Input
-                  key={key}
-                  type={params.type}
-                  placeholder={params.placeholder}
-                  title={params.title}
-                  onChange={e => formStore.setField(formStore.fields[key].name, e.target.value)}
-                />
-              );
-            })}
+            <InputBlock formStore={formStore}/>
             <Button mod="blue" content={COMMON_LABELS.login} onClick={login} />
             <div className={styles.login__signup}>
               <span className={styles['login__signup-text']}>{COMMON_LABELS.haveAccount}</span>

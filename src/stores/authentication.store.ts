@@ -6,7 +6,7 @@ class AuthorizationStore {
     user: IUser = {
         email: '',
         secondName: '',
-        firstName: '',
+        name: '',
         lastName: '',
         password: '',
         userName: '',

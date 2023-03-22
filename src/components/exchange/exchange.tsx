@@ -1,59 +1,72 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import styles from './scss/exchange.module.scss';
 import Button from '../button/button';
-import Router from 'next/router';
-import Tree from './tree';
-import Delivery from '../delivery/delivery';
+import Input from '../input/input';
+import FormStore from '../../stores/form.store';
+import { AUTHOR_FIELDS, BOOK_FIELDS, OFFER_FIELDS } from '../../config/fields.config';
+import InputBlock from '../input/input-block';
+import CheckboxTree from 'react-checkbox-tree';
+import ArrowDown from 'src/resources/img/arrow-down.svg';
+import { CHECKBOX_TREE } from '../../config/checbox-tree.config';
+import UserStore from '../../stores/user.authorized.store';
+import { IAuthor } from '../../models/author.model';
+import { IBookLiteraly } from '../../models/book-literaly.model';
+import { IOfferList } from '../../models/offer-list.model';
+import { createOfferRequest } from '../../requests/create-offer.requests';
 
 interface ExchangeProps {
-  className: string;
+  setActive: (key: number) => void;
 }
-const exchange = ({ className }: ExchangeProps) => {
+const Exchange = ({ setActive}: ExchangeProps) => {
+  const [checkedExchange, setChecked] = useState<string[]>([])
+  const authorFormStore = useMemo(() => new FormStore(AUTHOR_FIELDS), []);
+  const bookFormStore = useMemo(() => new FormStore(BOOK_FIELDS), []);
+  const offerFormStore = useMemo(() => new FormStore(OFFER_FIELDS), []);
+  const {userAuthorized} = useMemo(()=> new UserStore, [])
+
+  const goNext = async () => {
+    if(!userAuthorized){
+      alert('Чтобы продолжить авторизуйтесь')
+      return
+    }
+    const author = authorFormStore.getFieldsAccumulator() as IAuthor
+    const bookLit = bookFormStore.getFieldsAccumulator() as IBookLiteraly;
+    const offer = offerFormStore.getFieldsAccumulator() as IOfferList
+    createOfferRequest(userAuthorized.id!, offer, bookLit, author, checkedExchange).then(()=>{
+      alert('Успешно')
+      setActive(1);
+    })
+    
+   
+  };
+
   
   return (
-    <section className={className}>
-      <form className={styles.form}>
-        <form id="form1" className={styles.form1}>
-          <label>
-            <span className={styles.kategoty}>Автор*</span>
-            <input className={styles.kategoty_text1} type="text" name="firsname" placeholder="Фамилия" />
-            <input style={{ margin: '10px 5px', background: 'white' }} type="text" name="name" placeholder="Имя" />
-            <span className={styles.kategoty_text3}>Название книги*</span>
-            <input className={styles.kategoty_text2} type="text" name="firsname" placeholder="Название книги" />
-          </label>
-        </form>
-
-        <form id="form2" className={styles.form2}>
-          <label>
-            <span className={styles.kategoty}>ISBN</span>
-            <input className={styles.kategoty_text1} type="text" name="firsname" placeholder="978-5-93673-265-2" />
-            <span className={styles.kategoty_text3}>Год издания*</span>
-            <input className={styles.kategoty_text2} type="text" name="firsname" placeholder="2012" />
-          </label>
-          </form>
-
-          <form id="form2" className={styles.form3}>
-            <span >Категории</span>
-            <div id='spisok'></div>
-          </form>
-        
-        
-
-        <>
-           {/* <Button size={'xs'} onClick={()=>Router.push('/exchange')} content={'Далее'} />  */}
-          <button className={styles.button}>Далее</button>
-          
-      </>
-      </form>
-
-      
-      {/* http://javascript.ru/ui/tree */}
-    </section>
-
-    
+    <>
+      <div className={styles.exchange}>
+        <div className={styles.exchange__forms}>
+          <div className={styles.exchange__formBlock}>
+            <InputBlock title={'Автор'} titleType={'small'} formStore={authorFormStore} />
+          </div>
+          <div>
+            <InputBlock title={'Книга'} titleType={'small'} formStore={bookFormStore} />
+            <div></div>
+            <InputBlock titleType={'small'} formStore={offerFormStore} />
+          </div>
+        </div>
+        <div className={styles.exchange__tree}>
+        <CheckboxTree
+          checked={checkedExchange}
+          nodes={CHECKBOX_TREE}
+          onCheck={setChecked}
+        />
+        </div>
+      </div>
+      <div className={styles.exchange__buttonBlock}>
+        <Button className={styles.exchange__button} content={'Подтвердить'} onClick={goNext} size={'sm'} mod={'blue'} />
+      </div>
+    </>
   );
-
-  
 };
 
-export default exchange;
+export default Exchange;

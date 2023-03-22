@@ -1,4 +1,4 @@
-.messages {
+.start-exchange {
   &__message {
     width: 100%;
     transition: 0.2s ease all;
@@ -29,35 +29,26 @@
     }
   }
 
-&__prover{
-  display: none;
-}
+  &__prover {
+    display: none;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-&__section {  //добавили
-  display: none;
-}
-&__section .active {  //добавили
-  display: block;
-}
-
+  &__section {
+    //добавили
+    display: none;
+  }
+  &__section .active {
+    //добавили
+    display: block;
+  }
 
   &__tabs {
     @include flex($fd: row);
     width: 100%;
+    padding: 0;
   }
 
-  .active,
+
   &__tab {
     @include flex($jc: center);
     background-color: white;
@@ -73,12 +64,13 @@
     &:first-child {
       border-radius: 5px 0 0 5px;
     }
-    &:last-child{
+    &:last-child {
       border-radius: 0 5px 5px 0;
     }
 
     &--active {
-      background-color: blue;
+      background-color: $c-brand;
+      color: $c-white;
     }
   }
 
