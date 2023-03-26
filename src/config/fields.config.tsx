@@ -88,6 +88,8 @@ export const ADDRESS_FIELDS = {
     type: fieldTypesEnum.text,
     title: 'Номер дома',
     require: true,
+    pattern: EMAIL_REGEX,
+    error: COMMON_LABELS.wrongFormat,
     length: {
       max: 5,
       error: 'Не более 5 символов',
@@ -97,19 +99,29 @@ export const ADDRESS_FIELDS = {
     type: fieldTypesEnum.number,
     title: 'Номер строения',
     require: false,
+    validate: "number",
     length: {
       max: 2,
       error: 'Не более 2 символов',
     },
+    numberOptions:{
+      min: 1,
+      error: 'Ты дебил?'
+    }
   },
   addrApart:{
     type: fieldTypesEnum.number,
     title: 'Номер квартиры',
+    validate: "number",
     require: false,
     length: {
       max: 3,
       error: 'Не более 3 символов',
     },
+    numberOptions:{
+      min: 1,
+      error: 'Ты дебил?'
+    }
   },
 };
 
