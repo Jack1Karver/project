@@ -12,11 +12,9 @@ export const signIn = async (user: IUser, address: IUserAddress) => {
 };
 
 export const loginRequest = async(data: ILoginUser)=>{
-  try{
+
     const res = await api.post('/auth/login', data);
 
     return res.data as {token: string} ?? null
-  }catch (err: any) {
-    return { err, status: err?.status ?? err.response?.status };
-  }
+
 }
