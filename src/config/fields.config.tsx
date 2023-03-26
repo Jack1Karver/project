@@ -200,6 +200,8 @@ export const BOOK_FIELDS={
   }
 }
 
+const date = new Date
+
 export const OFFER_FIELDS = {
   ISBN:{
     type: fieldTypesEnum.text,
@@ -215,10 +217,15 @@ export const OFFER_FIELDS = {
   yearPublishing:{
     type: fieldTypesEnum.number,
     title: 'Год издания',
+    validate: 'number',
     require: true,
     length:{
       max: 4,
       error: 'Не более 4 символов'
+    },
+    numberOptions:{
+      max: date.getFullYear(),
+      error: 'Либо вы прилетели сюда на DeLorean DMC-12, либо вы ошиблись'
     }
   }
 }

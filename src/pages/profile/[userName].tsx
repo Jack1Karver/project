@@ -11,7 +11,6 @@ user: IUserExtended
 
 const ProfilePage = (props: UserProps) => {
 
-  console.log(props.user.createdAt)
   return (
     <>
       <Head>

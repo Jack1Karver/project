@@ -10,6 +10,7 @@ interface ReceivingProps {
   setActive: (key: number) => void;
   checkedStore: CheckboxStore
 }
+
 const Receiving = observer(({ setActive, checkedStore }: ReceivingProps) => {
   const [checked, setChecked] = useState<string[]>([]);
 

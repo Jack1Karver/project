@@ -16,7 +16,7 @@ export const numberNotValid = (field: Field, value: unknown): boolean => {
   if (field.require && field.validate === 'number' && field.numberOptions && value !== '') {
     const numberParams = field.numberOptions;
     const numberValue = Number(value);
-
+    
     if (
       (numberParams?.min && numberValue < numberParams.min) ||
       (numberParams?.max && numberValue > numberParams.max)

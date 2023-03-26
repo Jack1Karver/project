@@ -4,6 +4,11 @@ import { IBookLiteraly } from "../models/book-literaly.model";
 import { IOfferList } from "../models/offer-list.model";
 
 export const createOfferRequest = async(userId: number, offer: IOfferList, book: IBookLiteraly, author: IAuthor, categories: string[]) => {
-    const res = api.post('/offer', {idUser: userId, book, offer, author, categories})
+    try{
+    const res = await api.post('/offer', {idUser: userId, book, offer, author, categories})
     return res
+    }
+    catch (err: any) {
+        return { err, status: err?.status ?? err.response?.status };
+    }
 };

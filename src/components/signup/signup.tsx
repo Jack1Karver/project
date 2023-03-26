@@ -24,8 +24,6 @@ const SignUp = observer(() => {
       alert('Проверьте заполнение полей');
       return;
     }
-    console.log(user);
-    console.log(address)
     let result = await signIn(user, address);
     if (result.error) {
       alert(result.error);

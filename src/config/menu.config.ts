@@ -13,7 +13,7 @@ export const MENU_ITEMS= [
     {
         id: 3,
         title:'Обратная связь',
-        link: '/news'
+        link: '/feedback'
     },
    
 ]

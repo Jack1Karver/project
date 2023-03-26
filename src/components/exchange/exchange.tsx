@@ -1,23 +1,22 @@
 import React, { useMemo, useState } from 'react';
 import styles from './scss/exchange.module.scss';
 import Button from '../button/button';
-import Input from '../input/input';
 import FormStore from '../../stores/form.store';
 import { AUTHOR_FIELDS, BOOK_FIELDS, OFFER_FIELDS } from '../../config/fields.config';
 import InputBlock from '../input/input-block';
 import CheckboxTree from 'react-checkbox-tree';
-import ArrowDown from 'src/resources/img/arrow-down.svg';
 import { CHECKBOX_TREE } from '../../config/checbox-tree.config';
 import UserStore from '../../stores/user.authorized.store';
 import { IAuthor } from '../../models/author.model';
 import { IBookLiteraly } from '../../models/book-literaly.model';
 import { IOfferList } from '../../models/offer-list.model';
 import { createOfferRequest } from '../../requests/create-offer.requests';
+import { observer } from 'mobx-react';
 
 interface ExchangeProps {
   setActive: (key: number) => void;
 }
-const Exchange = ({ setActive}: ExchangeProps) => {
+const Exchange = observer(({ setActive}: ExchangeProps) => {
   const [checkedExchange, setChecked] = useState<string[]>([])
   const authorFormStore = useMemo(() => new FormStore(AUTHOR_FIELDS), []);
   const bookFormStore = useMemo(() => new FormStore(BOOK_FIELDS), []);
@@ -25,6 +24,7 @@ const Exchange = ({ setActive}: ExchangeProps) => {
   const {userAuthorized} = useMemo(()=> new UserStore, [])
 
   const goNext = async () => {
+
     if(!userAuthorized){
       alert('Чтобы продолжить авторизуйтесь')
       return
@@ -32,12 +32,16 @@ const Exchange = ({ setActive}: ExchangeProps) => {
     const author = authorFormStore.getFieldsAccumulator() as IAuthor
     const bookLit = bookFormStore.getFieldsAccumulator() as IBookLiteraly;
     const offer = offerFormStore.getFieldsAccumulator() as IOfferList
-    createOfferRequest(userAuthorized.id!, offer, bookLit, author, checkedExchange).then(()=>{
+    if (!(authorFormStore.validateFields() && bookFormStore.validateFields() && offerFormStore.validateFields())) {
+      alert('Проверьте заполнение полей');
+      return;
+    }
+    createOfferRequest(userAuthorized.id!, offer, bookLit, author, checkedExchange).then((res)=>{
+      if(res.status < 300){
       alert('Успешно')
       setActive(1);
-    })
-    
-   
+      } else throw new Error()
+    } )
   };
 
   
@@ -67,6 +71,6 @@ const Exchange = ({ setActive}: ExchangeProps) => {
       </div>
     </>
   );
-};
+});
 
 export default Exchange;

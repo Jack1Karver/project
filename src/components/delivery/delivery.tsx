@@ -12,51 +12,51 @@ import { IUserAddress } from '../../models/user-address.model';
 import { observer } from 'mobx-react';
 import CheckboxStore from '../../stores/checkbox.store';
 interface DeliveryProps {
-  setActive: (key: number)=>void
+  setActive: (key: number) => void;
   checkedStore: CheckboxStore;
 }
 const delivery = observer(({ setActive, checkedStore }: DeliveryProps) => {
-  const addressFormStore = useMemo(()=>new FormStore(ADDRESS_FIELDS), [])
-  const [defaultChecked, setDefaultAddress] = useState<boolean>(false)
-  const [isDefault, setIsDefault] = useState<boolean>(false)
-  const {userAuthorized} = useMemo(()=> new UserStore, [])
-  console.log(checkedStore.checked)
+  const addressFormStore = useMemo(() => new FormStore(ADDRESS_FIELDS), []);
+  const [defaultChecked, setDefaultAddress] = useState<boolean>(false);
+  const [isDefault, setIsDefault] = useState<boolean>(false);
+  const { userAuthorized } = useMemo(() => new UserStore(), []);
 
-  const useDefault = ()=>{
-    setDefaultAddress(!defaultChecked)
-  }
+  const useDefault = () => {
+    setDefaultAddress(!defaultChecked);
+  };
 
-  const setDefault = ()=>{
-    setIsDefault(!isDefault)
-  }
+  const setDefault = () => {
+    setIsDefault(!isDefault);
+  };
 
   const goNext = () => {
-    if(!userAuthorized){
-      alert('Чтобы продолжить авторизуйтесь')
-      return
+    if (!userAuthorized) {
+      alert('Чтобы продолжить авторизуйтесь');
+      return;
     }
     const address = addressFormStore.getFieldsAccumulator() as IUserAddress;
-    if(defaultChecked){
-      address.isDefault=isDefault;
+    if (defaultChecked) {
+      address.isDefault = isDefault;
     }
-    setWish(userAuthorized.id!, checkedStore.checked, address, defaultChecked)
+    setWish(userAuthorized.id!, checkedStore.checked, address, defaultChecked);
   };
-  
+
   const goBack = () => {
     setActive(0);
   };
 
   return (
     <div className={styles.delivery}>
-
-        <div>
-          <Input type ={'checkbox'} label ={'Использовать основной адрес'} onChange={useDefault}/>
+      <div>
+        <Input type={'checkbox'} label={'Использовать основной адрес'} onChange={useDefault} />
+      </div>
+      {
+        <div className={styles.delivery__fields}>
+          <InputBlock disabled={defaultChecked} formStore={addressFormStore} />
+          <Input disabled={defaultChecked} type={'checkbox'} label={'Сделать основным'} onChange={setDefault} />
         </div>
-        {<div className={styles.delivery__fields}>
-        <InputBlock disabled ={defaultChecked}formStore={addressFormStore}/>
-        <Input disabled = {defaultChecked} type ={'checkbox'} label = {'Сделать основным'} onChange={setDefault}/>
-        </div>}
-        <div className={styles.delivery__buttonBlock}>
+      }
+      <div className={styles.delivery__buttonBlock}>
         <Button content={'Назад'} onClick={goBack} size={'sm'} mod={'blue'} />
         <Button content={'Подтвердить'} onClick={goNext} size={'sm'} mod={'blue'} />
       </div>

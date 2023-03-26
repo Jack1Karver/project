@@ -3,7 +3,7 @@ import { fieldTypesEnum } from "../enums/field-types.enum";
 
 export type Field = {
   type: fieldTypesEnum;
-  validate?: 'number' | '';
+  validate?: string;
   placeholder?: string;
   title?: string;
   description?: string;

@@ -12,7 +12,6 @@ class CheckboxStore{
     }
 
     setChecked = (checked:string[])=>{
-        console.log(checked)
         this.checked = checked
     }
 }
