@@ -54,6 +54,7 @@ export const ADDRESS_FIELDS = {
     type: fieldTypesEnum.number,
     placeholder: 'XXXXXX',
     title: 'Индекс',
+    validate: "number",
     require: true,
     length: {
       min: 6,
@@ -61,8 +62,8 @@ export const ADDRESS_FIELDS = {
       error: 'Индекс должен содержать 6 цифр',
     },
     numberOptions:{
-      min: 0,
-      error: 'Индекс не'
+      min: 1,
+      error: 'Ты дебил?'
     }
   },
   addrCity:{
@@ -229,7 +230,7 @@ export const OFFER_FIELDS = {
     },
     numberOptions:{
       max: date.getFullYear(),
-      min: 0,
+      min: 1,
       error: 'Либо вы прилетели сюда на DeLorean DMC-12, либо вы ошиблись'
     }
   }

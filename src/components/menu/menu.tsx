@@ -18,9 +18,7 @@ const Menu = ({user}:MenuProps) => {
   return (
     <ul className={styles.menu}>
       {MENU_ITEMS.map((label, key) => {
-        if (label.authorized && !user) {
-          return ''
-        }else{
+        
           return (
             <li key={label.id} className={styles.menu__item}>
               <Link href={label.link}>
@@ -28,7 +26,6 @@ const Menu = ({user}:MenuProps) => {
               </Link>
             </li>
           );
-        }
       })}
     </ul>
     
