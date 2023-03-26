@@ -6,12 +6,6 @@ export const MENU_ITEMS= [
     },
     {
         id: 2,
-        title: 'Мои обмены',
-        link: '/friends',
-        authorized: true
-    },
-    {
-        id: 3,
         title:'Обратная связь',
         link: '/feedback'
     },

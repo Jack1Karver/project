@@ -20,7 +20,7 @@ const SignUp = observer(() => {
   const signUp = async () => {
     const user = signUpFormStore.getFieldsAccumulator() as IUser;
     const address = addressFormStore.getFieldsAccumulator() as IUserAddress;
-    if (!signUpFormStore.validateFields() && !addressFormStore.validateFields()) {
+    if (!(signUpFormStore.validateFields() && addressFormStore.validateFields())) {
       alert('Проверьте заполнение полей');
       return;
     }

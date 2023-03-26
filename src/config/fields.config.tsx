@@ -60,6 +60,10 @@ export const ADDRESS_FIELDS = {
       max: 6,
       error: 'Индекс должен содержать 6 цифр',
     },
+    numberOptions:{
+      min: 0,
+      error: 'Индекс не'
+    }
   },
   addrCity:{
     type: fieldTypesEnum.text,
@@ -89,7 +93,7 @@ export const ADDRESS_FIELDS = {
     },
   },
   addrStructure: {
-    type: fieldTypesEnum.text,
+    type: fieldTypesEnum.number,
     title: 'Номер строения',
     require: false,
     length: {
@@ -98,7 +102,7 @@ export const ADDRESS_FIELDS = {
     },
   },
   addrApart:{
-    type: fieldTypesEnum.text,
+    type: fieldTypesEnum.number,
     title: 'Номер квартиры',
     require: false,
     length: {
@@ -225,6 +229,7 @@ export const OFFER_FIELDS = {
     },
     numberOptions:{
       max: date.getFullYear(),
+      min: 0,
       error: 'Либо вы прилетели сюда на DeLorean DMC-12, либо вы ошиблись'
     }
   }

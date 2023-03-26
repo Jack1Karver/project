@@ -21,6 +21,9 @@ const Login = () => {
   const login = async () => {
     const fields = formStore.getFieldsAccumulator();
     const result = await loginRequest(fields as ILoginUser);
+    if(result){
+
+    }
     localStorage.setItem('Authorization', result?.token!);
     Router.push('/');
   };

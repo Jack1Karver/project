@@ -21,7 +21,7 @@ class FormStore {
       const field: FormFieldState = {
         name: key,
         value: '',
-        error: '',
+        error: validateFormField(this.fieldsParams[key], ''),
       };
 
       acc[key] = field;
