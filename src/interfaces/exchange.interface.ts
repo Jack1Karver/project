@@ -11,7 +11,7 @@ export interface IExchangeUser{
     }
     userOffer: {
         user: IUserExtended,
-        categories: ICategory,
+        categories: ICategory[],
         isSubmit: boolean
     }
 }

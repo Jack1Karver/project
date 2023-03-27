@@ -6,7 +6,7 @@ import { getActiveExchanges } from "../requests/exchange.requests";
 
 class ExchangeStore{
 
-    active: IExchangeUser[] = [] 
+    exchanges: IExchangeUser[] = [] 
 
     constructor(active: boolean, idUser: number){
         makeAutoObservable(this)
@@ -14,7 +14,7 @@ class ExchangeStore{
     }
 
     setActiveExchanges = async(idUser: number)=>{
-        this.active = await getActiveExchanges(idUser)
+        this.exchanges = await getActiveExchanges(idUser)
     }
 
 }
