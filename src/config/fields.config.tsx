@@ -1,6 +1,6 @@
 import { fieldTypesEnum } from '../enums/field-types.enum';
 import { COMMON_LABELS } from './labels.config';
-import { EMAIL_REGEX, ISBN_REGEX, PASSWORD_REGEX, TEXT_REGEX } from './regex.config';
+import { EMAIL_REGEX, HOME_REGEX, ISBN_REGEX, PASSWORD_REGEX, TEXT_REGEX } from './regex.config';
 
 export const SIGN_UP_FIELDS = {
   name: {
@@ -63,7 +63,7 @@ export const ADDRESS_FIELDS = {
     },
     numberOptions:{
       min: 1,
-      error: 'Ты дебил?'
+      error: 'Не может быть отрицательным'
     }
   },
   addrCity:{
@@ -88,7 +88,7 @@ export const ADDRESS_FIELDS = {
     type: fieldTypesEnum.text,
     title: 'Номер дома',
     require: true,
-    pattern: EMAIL_REGEX,
+    pattern: HOME_REGEX,
     error: COMMON_LABELS.wrongFormat,
     length: {
       max: 5,
@@ -106,7 +106,7 @@ export const ADDRESS_FIELDS = {
     },
     numberOptions:{
       min: 1,
-      error: 'Ты дебил?'
+      error: 'Не может быть отрицательным'
     }
   },
   addrApart:{
@@ -120,7 +120,7 @@ export const ADDRESS_FIELDS = {
     },
     numberOptions:{
       min: 1,
-      error: 'Ты дебил?'
+      error: 'Не может быть отрицательным'
     }
   },
 };

@@ -9,9 +9,4 @@ export const MENU_ITEMS= [
         title:'Обратная связь',
         link: '/feedback'
     },
-    {
-        id: 3,
-        title:'Обратная связь',
-        link: '/news2'
-    },
 ]

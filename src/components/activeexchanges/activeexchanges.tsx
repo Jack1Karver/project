@@ -5,15 +5,18 @@ import styles from './scss/activeexchanges.module.scss';
 
 const activeexchanges = () => {
   return (<>
-
-    <Container>
       <>
     <div className={styles.activeexchanges__wrap}>
-      <div className={styles.activeexchanges__bblock}>Мне</div>
-      <div className={styles.activeexchanges__bblock}>Я</div>
+      <div>
+      <h3>Мне</h3>
+      <div className={styles.activeexchanges__bblock}/>
+      </div>
+      <div>
+      <h3>Я</h3>
+      <div className={styles.activeexchanges__bblock}/>
+      </div>
     </div>
     </>
-    </Container>
  </>
 )};
 

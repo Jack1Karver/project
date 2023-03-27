@@ -77,6 +77,10 @@ border-bottom: 1px solid $c-brand;
     margin-bottom: 15px;
     display: block;
   }
+
+  &__container{
+    width:100%
+  }
 }
 
 .avatar {

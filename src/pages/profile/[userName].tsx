@@ -1,23 +1,22 @@
 import Head from 'next/head';
-import ProfileBlock from '../../components/block/profile-block';
 import Layout from '../../components/layout/layout';
 import { GetServerSideProps, GetStaticPaths } from 'next';
 import { getAuthorizedUserRequest } from '../../requests/user.request';
 import { IUserExtended } from '../../models/user.model';
+import Profile from '../../components/profile/profile';
 
 type UserProps = {
-user: IUserExtended
-}
+  user: IUserExtended;
+};
 
 const ProfilePage = (props: UserProps) => {
-
   return (
     <>
       <Head>
         <title>Profile | Book2Book</title>
       </Head>
       <Layout>
-        <ProfileBlock user={props.user}/>
+        <Profile user={props.user} />
       </Layout>
     </>
   );
