@@ -6,11 +6,11 @@ import styles from './scss/offer-exchange.module.scss';
 import { ICoincidence } from '../../interfaces/coincidens.interface';
 import Button from '../button/button';
 import rowStyles from '../rows/scss/rows.module.scss'
+import { saveExchangeList } from '../../requests/exchange.requests';
 
 enum types {
   full = 'Полное совпадение',
   partial = 'Частичное совпадение',
-  another = 'Интересные предложения',
 }
 
 const OfferExchange = observer(() => {
@@ -22,11 +22,11 @@ const OfferExchange = observer(() => {
       coincidencesStore.setCoencidences(userAuthorized.id);
     }
   }, [userAuthorized]);
-
-    console.log(coincidencesStore.coincidences)
+  console.log(coincidencesStore.coincidences)
 
   const startExchange = (row: ICoincidence) => {
-
+    console.log(row)
+    saveExchangeList(row)
   };
 
   return (

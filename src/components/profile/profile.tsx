@@ -35,12 +35,12 @@ const Profile = observer(({ user }: ProfileBlockProps) => {
     {
       type: 'activeexchanges',
       title: 'Активные обмены',
-      content: <ActiveExchanges />,
+      content: <ActiveExchanges user={user} active={true}/>,
     },
     {
       type: 'myarchive',
       title: 'Архив',
-      content: <ActiveExchanges />,
+      content: <ActiveExchanges user={user} active={false}/>,
     },
   ];
 
