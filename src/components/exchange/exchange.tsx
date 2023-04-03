@@ -12,6 +12,7 @@ import { IBookLiteraly } from '../../models/book-literaly.model';
 import { IOfferList } from '../../models/offer-list.model';
 import { createOfferRequest } from '../../requests/create-offer.requests';
 import { observer } from 'mobx-react';
+import { toast } from 'react-toastify';
 
 interface ExchangeProps {
   setActive: (key: number) => void;
@@ -24,21 +25,20 @@ const Exchange = observer(({ setActive}: ExchangeProps) => {
   const {userAuthorized} = useMemo(()=> new UserStore, [])
 
   const goNext = async () => {
-
     if(!userAuthorized){
-      alert('Чтобы продолжить авторизуйтесь')
+      toast.error('Чтобы продолжить авторизуйтесь')
       return
     }
     const author = authorFormStore.getFieldsAccumulator() as IAuthor
     const bookLit = bookFormStore.getFieldsAccumulator() as IBookLiteraly;
     const offer = offerFormStore.getFieldsAccumulator() as IOfferList
     if (!(authorFormStore.validateFields() && bookFormStore.validateFields() && offerFormStore.validateFields())) {
-      alert('Проверьте заполнение полей');
+      toast.error('Проверьте заполнение полей');
       return;
     }
     createOfferRequest(userAuthorized.id!, offer, bookLit, author, checkedExchange).then((res)=>{
       if(res.status < 300){
-      alert('Успешно')
+      toast.success('Успешно')
       setActive(1);
       } else throw new Error()
     } )

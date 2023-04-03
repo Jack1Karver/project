@@ -11,6 +11,8 @@ import UserStore from '../../stores/user.authorized.store';
 import { IUserAddress } from '../../models/user-address.model';
 import { observer } from 'mobx-react';
 import CheckboxStore from '../../stores/checkbox.store';
+import { toast } from 'react-toastify';
+import Router from 'next/router';
 interface DeliveryProps {
   setActive: (key: number) => void;
   checkedStore: CheckboxStore;
@@ -31,7 +33,7 @@ const delivery = observer(({ setActive, checkedStore }: DeliveryProps) => {
 
   const goNext = () => {
     if (!userAuthorized) {
-      alert('Чтобы продолжить авторизуйтесь');
+      toast.error('Чтобы продолжить авторизуйтесь');
       return;
     }
     const address = addressFormStore.getFieldsAccumulator() as IUserAddress;
@@ -39,7 +41,10 @@ const delivery = observer(({ setActive, checkedStore }: DeliveryProps) => {
       address.isDefault = isDefault;
     }
     setWish(userAuthorized.id!, checkedStore.checked, address, defaultChecked);
+    toast.success('Успешно');
+    Router.push('/');
   };
+
 
   const goBack = () => {
     setActive(0);

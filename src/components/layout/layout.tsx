@@ -11,9 +11,11 @@ const Layout = ({ children }: LayoutProps):ReactElement => {
   return (
     <>
       <Header />
+      <main>
       <Block first={true} mod={'md'}>
         {children}
       </Block>
+      </main>
       <Footer />
     </>
   );

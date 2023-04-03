@@ -7,32 +7,45 @@
   border: 1px solid $c-grey;
   color: black;
 
-  &--wide{
-    width:100%
+  &__field{
+    margin-bottom: 16px;
   }
 
-  &__title{
+  &--wide {
+    width: 100%;
+  }
+
+  &--mb-0 {
+    margin-bottom: 0px;
+  }
+
+  &__title {
     margin-bottom: 5px;
 
-    &--small{
+    &--small {
       font-size: 14px;
     }
 
-    &--disabled{
+    &--disabled {
       color: $c-grey;
     }
   }
 
-  &--disabled{
+  &--disabled {
     color: $c-grey;
     background-color: $c-background;
-    cursor:not-allowed;
+    cursor: not-allowed;
   }
 
-  &__block{
+  &__block {
     margin-bottom: 24px;
   }
 
+  &__inputs {
+    .input{
+      margin-bottom: 16px;
+    }
+  }
 
   &__checkbox {
     justify-content: flex-start;

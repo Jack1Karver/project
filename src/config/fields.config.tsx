@@ -247,3 +247,15 @@ export const OFFER_FIELDS = {
     }
   }
 }
+
+export const TRACK_FIELDS = {
+  trackNumber: {
+    type: fieldTypesEnum.number,
+    validate: 'number',
+    require: true,
+    length:{
+      max: 20,
+      error: 'Не более 20 символов'
+    },
+  }
+}

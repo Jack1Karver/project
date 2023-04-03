@@ -9,6 +9,8 @@ import Router from 'next/router';
 import { COMMON_LABELS } from '../../config/labels.config';
 import ButtonLocalization from '../button/button-localization';
 import { useLocale } from '../../hooks/use-locale';
+import { toast } from 'react-toastify';
+
 
 
 const Header = observer(() => {
@@ -25,7 +27,6 @@ const Header = observer(() => {
         <div className={styles.header__menu}>
           <Menu user={userAuthorized}/>
         </div>
-        <ButtonLocalization/>
         <div className={styles.header__login}>
           {userAuthorized ? (
             <>

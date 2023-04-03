@@ -11,6 +11,7 @@ import { ILoginUser } from '../../models/user.model';
 import { COMMON_LABELS } from '../../config/labels.config';
 import InputBlock from '../input/input-block';
 import toggle from 'react-toggle'
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const formStore = useMemo(() => new FormStore(LOGIN_FIELDS), []);
@@ -22,11 +23,13 @@ const Login = () => {
   const login = async () => {
     const fields = formStore.getFieldsAccumulator();
     const result = await loginRequest(fields as ILoginUser);
-    if(!result){
-      alert('Не правильное имя пользователя или пароль')
+    if (result.status == '404'){
+      toast.error('Неправильный E-mail или пароль')
       return
     }
+
     localStorage.setItem('Authorization', result?.token!);
+    toast.success('Успешно')
     Router.push('/');
   };
 

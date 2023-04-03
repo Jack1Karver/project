@@ -31,7 +31,7 @@ const InputBlock = observer(({ formStore, titleType, title, disabled = false}: I
           />
         );
       })}
-    </div>
+      </div>
   );
 });
 

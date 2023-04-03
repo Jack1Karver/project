@@ -20,8 +20,8 @@ class FormStore {
     this.fields = Object.keys(this.fieldsParams).reduce((acc, key) => {
       const field: FormFieldState = {
         name: key,
-        value: '',
-        error: validateFormField(this.fieldsParams[key], ''),
+        value: ' ',
+        error: '',
       };
 
       acc[key] = field;
@@ -38,6 +38,8 @@ class FormStore {
 
   validateFields = ()=>{
    return Object.values(this.fields).every(field=>{
+      field.error = validateFormField(this.fieldsParams[field.name], field.value)
+      console.log(field.error)
       return !field.error
    } )
   }

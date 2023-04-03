@@ -9,19 +9,14 @@
   &__block {
     @include flex($fd: column);
     border: 1px solid $c-brand;
-    height: 270px;
+    height: 350px;
     text-align: center;
     border-radius: 4px;
     background-color: $c-white;
     line-height: 1.6;
     width: 230px;
-    padding: 16px 10px 0 10px;
+    padding: 16px 10px;
     grid-gap: 16px;
-
-    :last-child{
-        margin-top: auto;
-        margin-bottom: 20px;
-    }
   }
 
   &__exchanges{
@@ -37,7 +32,9 @@
   }
 
   &__titles{
-    @include flex($fd: row, $jc: space-around);
+    @include flex($fd: row,);
+    gap: 235px;
+    margin-left: 250px;
     width: 100%;
   }
 }

@@ -1,6 +1,6 @@
 import styles from './scss/profile.module.scss';
 import OfferExchange from '../offerexchange/offer-exchange';
-import ActiveExchanges from '../activeexchanges/activeexchanges';
+import ActiveExchanges from '../activeexchanges/active-exchanges';
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import CheckboxStore from '../../stores/checkbox.store';
 import { IUserExtended } from '../../models/user.model';
@@ -30,7 +30,7 @@ const Profile = observer(({ user }: ProfileBlockProps) => {
     {
       type: 'offerexchange',
       title: 'Предложение для обмена',
-      content: <OfferExchange />,
+      content: <OfferExchange showMe = {showMe}/>,
     },
     {
       type: 'activeexchanges',

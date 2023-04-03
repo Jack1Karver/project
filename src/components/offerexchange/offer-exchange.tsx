@@ -13,7 +13,11 @@ enum types {
   partial = 'Частичное совпадение',
 }
 
-const OfferExchange = observer(() => {
+type OfferExchangeProps = {
+  showMe: (key: number)=>void
+}
+
+const OfferExchange = observer(({showMe}: OfferExchangeProps) => {
   const { userAuthorized } = useMemo(() => new UserStore(), []);
   const coincidencesStore = useMemo(() => new CoincidencesStore(userAuthorized?.id), []);
 
@@ -27,6 +31,7 @@ const OfferExchange = observer(() => {
   const startExchange = (row: ICoincidence) => {
     console.log(row)
     saveExchangeList(row)
+    showMe(2)
   };
 
   return (

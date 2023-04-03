@@ -12,6 +12,7 @@ type InputProps = {
   defaultValue?: string;
   disabled?: boolean;
   error?: string;
+  margin?: 'mb-0'; 
 
 };
 
@@ -19,10 +20,10 @@ const Input = (props: InputProps) => {
   return (
     <>
       {props.type !== 'checkbox' ? (
-        <div className={styles.input__block}>
+        <div className = {styles.input__field}>
           {props.title ? <h3 className={`${styles.input__title} ${props.titleType? styles[`input__title--${props.titleType}`]: ''} ${props.disabled ? styles[`input__title--disabled`]:''}` }>{props.title}</h3> : ''}
           <input
-            className={`${styles.input} ${props.mod ? styles[`input--${props.mod}`] : ''} ${props.disabled ? styles[`input--disabled`]:''}`}
+            className={`${styles.input} ${props.mod ? styles[`input--${props.mod}`] : ''} ${props.disabled ? styles[`input--disabled`]:''} ${props.margin ? styles[`input--${props.margin}`] : ''}`}
             type={props.type}
             placeholder={props.placeholder}
             onChange={props.onChange}

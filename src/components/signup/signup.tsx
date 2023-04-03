@@ -12,6 +12,7 @@ import Router from 'next/router';
 import Columns from '../columns/columns';
 import InputBlock from '../input/input-block';
 import { IUserAddress } from '../../models/user-address.model';
+import { toast } from 'react-toastify';
 
 const SignUp = observer(() => {
   const signUpFormStore = useMemo(() => new FormStore(SIGN_UP_FIELDS), []);
@@ -21,15 +22,15 @@ const SignUp = observer(() => {
     const user = signUpFormStore.getFieldsAccumulator() as IUser;
     const address = addressFormStore.getFieldsAccumulator() as IUserAddress;
     if (!(signUpFormStore.validateFields() && addressFormStore.validateFields())) {
-      alert('Проверьте заполнение полей');
+      toast.error('Проверьте заполнение полей');
       return;
     }
     let result = await signIn(user, address);
     if (result.error) {
-      alert(result.error);
+      toast.error(result.error);
     } else {
       Router.push('/login');
-      alert('Успешно');
+      toast.success('Успешно');
     }
   };
 
