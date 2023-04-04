@@ -1,0 +1,39 @@
+.exchange{
+
+   @include flex($fd: row, $ai: flex-start);
+
+   &__buttonBlock{
+      @include flex($fd: row);
+      width:100%;
+   }
+
+   &__button{
+      margin-left:auto;
+   }
+
+   &__forms{
+      width:40%;
+   }
+
+   &__formBlock{
+      padding-bottom: 12px;
+      &:first-child{
+         border-bottom: 1px solid $c-background;
+      }
+      
+   }
+
+   &__tree{
+      list-style-type: none;
+   }
+
+   &__icon{
+      padding: 0;
+      border: none;
+      background-color: transparent;
+   }
+
+   &__tree{
+      padding: 20px 0 0 20px;
+   }
+}

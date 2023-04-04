@@ -1,0 +1,8 @@
+.offerExchange{
+    @include flex($fd: column);
+    grid-gap: 16px;
+    
+    &__block{
+        width: 100%;
+    }
+}

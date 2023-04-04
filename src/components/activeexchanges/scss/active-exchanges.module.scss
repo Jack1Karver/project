@@ -1,0 +1,40 @@
+.activeexchanges {
+  &__wrap {
+    @include flex($jc: center, $fd: column);
+
+    // width: 131px;/*фиксируем ширину обертки*/
+    // margin: 0 auto;/*центрируем ее*/
+  }
+
+  &__block {
+    @include flex($fd: column);
+    border: 1px solid $c-brand;
+    height: 350px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: $c-white;
+    line-height: 1.6;
+    width: 230px;
+    padding: 16px 10px;
+    grid-gap: 16px;
+  }
+
+  &__exchanges{
+    @include flex($fd: row);
+    grid-gap: 24px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: $c-background;
+  }
+
+  &__text {
+    align-items: center;
+  }
+
+  &__titles{
+    @include flex($fd: row,);
+    gap: 235px;
+    margin-left: 250px;
+    width: 100%;
+  }
+}

@@ -23,7 +23,7 @@ const Friends = () => {
         <div className={styles.friends}>
           {friends.map(friend => {
             return (
-              <>
+              <>z
                 <div className={styles.friends__friend}>
                   <div className={styles.friends__avatar}>
                     {friend.avatar}

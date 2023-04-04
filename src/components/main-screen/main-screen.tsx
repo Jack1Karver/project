@@ -2,12 +2,14 @@
 import styles from './scss/main-screen.module.scss';
 import { useMemo } from 'react';
 import FormStore from '../../stores/form.store';
-import { LOGIN_FIELDS } from '../../config/fields';
+import { LOGIN_FIELDS } from '../../config/fields.config';
 
 import Container from '../container/container';
-import { COMMON_LABELS } from '../../config/labels';
+import { COMMON_LABELS } from '../../config/labels.config';
+
 
 const MainScreen = () => {
+
   return (
     <>
         <Container>

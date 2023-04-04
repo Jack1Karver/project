@@ -5,7 +5,7 @@ export interface ILoginUser {
 }
 
 export interface IUser extends ILoginUser {
-  firstName: string;
+  name: string;
   lastName: string;
   secondName?: string;
   avatar?: string;
@@ -17,5 +17,6 @@ export interface IUserExtended extends IUser {
   isSuperUser: boolean;
   enabled: boolean;
   rating: number;
-  createdAt: Date;
+  createdAt: string;
 }
+

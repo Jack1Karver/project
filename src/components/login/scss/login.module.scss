@@ -23,7 +23,7 @@
     }
   
     &__form {
-      @include flex($jc: center, $ai: center, $fd: column);
+      @include flex($jc: center, $ai: stretch, $fd: column);
       gap: 16px;
       padding: 10px 36px;
     }  

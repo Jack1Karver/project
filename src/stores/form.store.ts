@@ -1,5 +1,6 @@
 import {action, makeObservable, observable } from 'mobx';
 import { Field, FormFieldState } from '../interfaces/form';
+import { validateFormField } from '../utils/validation.utils';
 
 class FormStore {
   fields: Record<string, FormFieldState> = {};
@@ -19,7 +20,7 @@ class FormStore {
     this.fields = Object.keys(this.fieldsParams).reduce((acc, key) => {
       const field: FormFieldState = {
         name: key,
-        value: '',
+        value: ' ',
         error: '',
       };
 
@@ -30,10 +31,18 @@ class FormStore {
 
   };
 
-  setField = (name: string, value: string | null) => {
+  setField = (name: string, value: string) => {
     this.fields[name].value = value;
-    this.fields[name].error = '';
+    this.fields[name].error = validateFormField(this.fieldsParams[name], value);
   };
+
+  validateFields = ()=>{
+   return Object.values(this.fields).every(field=>{
+      field.error = validateFormField(this.fieldsParams[field.name], field.value)
+      console.log(field.error)
+      return !field.error
+   } )
+  }
 
   getFieldsAccumulator = ()=>{
     return Object.keys(this.fields).reduce((acc, key) => {

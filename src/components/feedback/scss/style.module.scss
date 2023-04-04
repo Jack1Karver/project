@@ -1,0 +1,73 @@
+.feedback{
+    @include flex($fd: column);
+    grid-gap: 16px;
+    
+    &__block{
+        width: 100%;
+    }
+
+    &__box1 {
+        display: flex;
+      }
+
+      &__input1{
+        @include flex($ai: center, $fd: column);
+        // display: inline-block;
+        align-items: center;
+        justify-content: center;
+        background-color: #e1e3e6;
+        width: 100%;
+        padding: 10px 10px;
+        border-radius: 5px;
+        border: 1px solid #727272;
+        color: black;
+        height: 40px;
+      }
+
+      &__button1{
+        border-radius: 5px;
+        border: 1px solid #727272;
+        background-color: #132d8c;
+        margin: 1.05px;
+        width: 100px;
+        height: 40px;
+      }
+
+      &__bblock{
+      border: 1px solid $c-brand; 
+      background: lightgray;
+      height: 150px;
+      text-align: center;
+      margin: 5px;
+      border-radius: 4px;
+      width: 100%; 
+    }
+
+    &__bblock1{
+        border: 1px solid $c-brand; 
+        background: white;
+        height: 100px;
+        text-align: center;
+        margin: 5px;
+        border-radius: 4px;
+        width: 30%; 
+        float: left;
+      }
+
+      &__bblock2{
+        border: 1px solid $c-brand; 
+        background: white;
+        height: 100px;
+        text-align: center;
+        margin: 5px;
+        border-radius: 4px;
+        width: 30%; 
+        float: right;
+      }
+
+    &__wrap { 
+        @include flex($ai: center, $fd: column);
+
+    }   
+
+}

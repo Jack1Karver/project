@@ -20,12 +20,13 @@ class UserStore {
     if (token) {
       const tokenDecoded = jwtDecode(token) as {userName: string}
       const user = await getAuthorizedUserRequest(tokenDecoded.userName)
+      if(user){
       this.setUserAuthorized(user)
+      }
     }
   };
 
   setUserAuthorized = (user: IUserExtended) => {
-    console.log(user);
     this.userAuthorized = user;
   };
 
