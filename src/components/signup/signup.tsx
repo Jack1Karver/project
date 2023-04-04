@@ -25,7 +25,7 @@ const SignUp = observer(() => {
       toast.error('Проверьте заполнение полей');
       return;
     }
-    let result = await signIn(user, address);
+    const result = await signIn(user, address);
     if (result.error) {
       toast.error(result.error);
     } else {

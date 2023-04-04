@@ -1,4 +1,4 @@
-import {action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { Field, FormFieldState } from '../interfaces/form';
 import { validateFormField } from '../utils/validation.utils';
 
@@ -6,11 +6,10 @@ class FormStore {
   fields: Record<string, FormFieldState> = {};
   fieldsParams: Record<string, Field> = {};
   constructor(params: { [key: string]: Field }) {
-
-    makeObservable(this,{
-        fields: observable,
-        setFields: action,
-        setField: action
+    makeObservable(this, {
+      fields: observable,
+      setFields: action,
+      setField: action,
     });
     this.fieldsParams = params;
     this.setFields();
@@ -23,12 +22,12 @@ class FormStore {
         value: ' ',
         error: '',
       };
-
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       acc[key] = field;
 
       return acc;
     }, {});
-
   };
 
   setField = (name: string, value: string) => {
@@ -36,20 +35,22 @@ class FormStore {
     this.fields[name].error = validateFormField(this.fieldsParams[name], value);
   };
 
-  validateFields = ()=>{
-   return Object.values(this.fields).every(field=>{
-      field.error = validateFormField(this.fieldsParams[field.name], field.value)
-      console.log(field.error)
-      return !field.error
-   } )
-  }
+  validateFields = () => {
+    return Object.values(this.fields).every(field => {
+      field.error = validateFormField(this.fieldsParams[field.name], field.value);
+      console.log(field.error);
+      return !field.error;
+    });
+  };
 
-  getFieldsAccumulator = ()=>{
+  getFieldsAccumulator = () => {
     return Object.keys(this.fields).reduce((acc, key) => {
-        acc[key] = this.fields[key].value;
-        return acc;
-      }, {});
-  }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      acc[key] = this.fields[key].value;
+      return acc;
+    }, {});
+  };
 }
 
 export default FormStore;

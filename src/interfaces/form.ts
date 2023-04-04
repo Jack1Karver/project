@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { fieldTypesEnum } from "../enums/field-types.enum";
+import { ReactElement } from 'react';
+import { fieldTypesEnum } from '../enums/field-types.enum';
 
 export type Field = {
   type: fieldTypesEnum;

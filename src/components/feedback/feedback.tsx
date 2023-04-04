@@ -1,13 +1,6 @@
-import { observer } from 'mobx-react';
-import { useEffect, useMemo } from 'react';
-import { CoincidencesStore } from '../../stores/coincidences.store';
-import UserStore from '../../stores/user.authorized.store';
-import Rows from '../rows/rows';
 import Container from '../container/container';
-import styles from './scss/style.module.scss'
-import { ICoincidence } from '../../interfaces/coincidens.interface';
+import styles from './scss/style.module.scss';
 // import styles from './scss/delivery.module.scss';
-import Button from '../button/button';
 
 const FeedBack = () => {
   
@@ -17,10 +10,10 @@ const FeedBack = () => {
         <>
           <div className={styles.feedback__wrap}>
             <div className={styles.feedback__bblock}>
-                <div className={styles.feedback__bblock1}></div>
+              <div className={styles.feedback__bblock1}></div>
             </div>
             <div className={styles.feedback__bblock}>
-                <div className={styles.feedback__bblock2}></div>
+              <div className={styles.feedback__bblock2}></div>
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import styles from './scss/active-exchanges.module.scss';
 import { IUserExtended } from '../../models/user.model';
 import { observer } from 'mobx-react';
@@ -17,7 +17,7 @@ type ActiveProps = {
 const ActiveExchanges = observer(({ user, active }: ActiveProps) => {
   const exchangeStore = useMemo(() => new ExchangeStore(active, user.id!), []);
   const formStore = useMemo(() => new FormStore(TRACK_FIELDS), []);
-  console.log(exchangeStore.exchanges)
+  console.log(exchangeStore.exchanges);
 
   const submitExchange = async (id: number) => {
     submitExchangeRequest(id);
@@ -25,16 +25,16 @@ const ActiveExchanges = observer(({ user, active }: ActiveProps) => {
   };
 
   const saveTrackNumber = async (id: number) => {
-    console.log(id)
-    const track = formStore.getFieldsAccumulator() as {trackNumber: string}
-    saveTrackNumberRequest(id, track.trackNumber)
+    console.log(id);
+    const track = formStore.getFieldsAccumulator() as {trackNumber: string};
+    saveTrackNumberRequest(id, track.trackNumber);
     exchangeStore.setActiveExchanges(user.id!);
   };
 
-  const setReceiving = async (id: number)=>{
-    setReceivingRequest(id)
+  const setReceiving = async (idOffer: number, idExchange: number)=>{
+    setReceivingRequest(idOffer, idExchange);
     exchangeStore.setActiveExchanges(user.id!);
-  }
+  };
 
   return (
     <>
@@ -107,12 +107,12 @@ const ActiveExchanges = observer(({ user, active }: ActiveProps) => {
                             <Button size={'sm'} mod={'blue'} content={'Подтвердить'} onClick={()=>saveTrackNumber(exc.myOffer.idOffer)}></Button>
                           </>
                         )}
-                        {exc.userOffer.trackNumber && (
+                        {exc.userOffer.trackNumber && exc.myOffer.trackNumber && (
                           <>
                             {exc.myOffer.receiving ? (
                               <label>{'Получено'}</label>
                             ) : (
-                              <Button size={'sm'} mod={'blue'} content={'Получил'} onClick={()=>setReceiving(exc.myOffer.idOffer)}/>
+                              <Button size={'sm'} mod={'blue'} content={'Получил'} onClick={()=>setReceiving(exc.myOffer.idOffer, exc.id)}/>
                             )}
                           </>
                         )}

@@ -9,7 +9,7 @@ type ButtonProps = {
   className?: string;
 };
 
-const Button = ({ size, content, mod, onClick, className}: ButtonProps) => {
+const Button = ({ size, content, mod, onClick, className }: ButtonProps) => {
 
   return (
     <button

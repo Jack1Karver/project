@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout from '../../components/layout/layout';
-import { GetServerSideProps, GetStaticPaths } from 'next';
+import { GetServerSideProps } from 'next';
 import { getAuthorizedUserRequest } from '../../requests/user.request';
 import { IUserExtended } from '../../models/user.model';
 import Profile from '../../components/profile/profile';
@@ -25,7 +25,7 @@ const ProfilePage = (props: UserProps) => {
 export default ProfilePage;
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  let { userName } = context.query;
+  const { userName } = context.query;
   let user;
 
   if (typeof userName === 'string') {

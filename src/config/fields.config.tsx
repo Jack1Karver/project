@@ -54,7 +54,7 @@ export const ADDRESS_FIELDS = {
     type: fieldTypesEnum.number,
     placeholder: 'XXXXXX',
     title: 'Индекс',
-    validate: "number",
+    validate: 'number',
     require: true,
     length: {
       min: 6,
@@ -99,7 +99,7 @@ export const ADDRESS_FIELDS = {
     type: fieldTypesEnum.number,
     title: 'Номер строения',
     require: false,
-    validate: "number",
+    validate: 'number',
     length: {
       max: 2,
       error: 'Не более 2 символов',
@@ -112,7 +112,7 @@ export const ADDRESS_FIELDS = {
   addrApart:{
     type: fieldTypesEnum.number,
     title: 'Номер квартиры',
-    validate: "number",
+    validate: 'number',
     require: false,
     length: {
       max: 3,
@@ -126,9 +126,9 @@ export const ADDRESS_FIELDS = {
 };
 
 export const LOGIN_FIELDS = {
-  email: {
+  userName: {
     type: fieldTypesEnum.text,
-    placeholder: 'Электронная почта',
+    placeholder: 'Имя пользователя',
     require: true,
     disabled: false,
   },
@@ -202,7 +202,7 @@ export const AUTHOR_FIELDS = {
       error: 'Не более 50 символов'
     }
   }
-}
+};
 
 
 export const BOOK_FIELDS={
@@ -215,9 +215,9 @@ export const BOOK_FIELDS={
       error: 'Не более 50 символов'
     }
   }
-}
+};
 
-const date = new Date
+const date = new Date;
 
 export const OFFER_FIELDS = {
   ISBN:{
@@ -246,7 +246,7 @@ export const OFFER_FIELDS = {
       error: 'Либо вы прилетели сюда на DeLorean DMC-12, либо вы ошиблись'
     }
   }
-}
+};
 
 export const TRACK_FIELDS = {
   trackNumber: {
@@ -258,4 +258,4 @@ export const TRACK_FIELDS = {
       error: 'Не более 20 символов'
     },
   }
-}
+};

@@ -3,7 +3,7 @@ import Container from '../container/container';
 
 import styles from './scss/start-exchange.module.scss';
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import Exchange from '../exchange/exchange';
 import Delivery from '../delivery/delivery';

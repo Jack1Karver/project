@@ -21,9 +21,9 @@ const Input = (props: InputProps) => {
     <>
       {props.type !== 'checkbox' ? (
         <div className = {styles.input__field}>
-          {props.title ? <h3 className={`${styles.input__title} ${props.titleType? styles[`input__title--${props.titleType}`]: ''} ${props.disabled ? styles[`input__title--disabled`]:''}` }>{props.title}</h3> : ''}
+          {props.title ? <h3 className={`${styles.input__title} ${props.titleType? styles[`input__title--${props.titleType}`]: ''} ${props.disabled ? styles['input__title--disabled']:''}` }>{props.title}</h3> : ''}
           <input
-            className={`${styles.input} ${props.mod ? styles[`input--${props.mod}`] : ''} ${props.disabled ? styles[`input--disabled`]:''} ${props.margin ? styles[`input--${props.margin}`] : ''}`}
+            className={`${styles.input} ${props.mod ? styles[`input--${props.mod}`] : ''} ${props.disabled ? styles['input--disabled']:''} ${props.margin ? styles[`input--${props.margin}`] : ''}`}
             type={props.type}
             placeholder={props.placeholder}
             onChange={props.onChange}
@@ -34,8 +34,8 @@ const Input = (props: InputProps) => {
         </div>
       ) : (
         <div className={styles.input__checkbox}>
-          <input className={`${styles.input} ${props.disabled ? styles[`input--disabled`]:''}`} disabled={props.disabled} type={props.type} onChange={props.onChange}/>
-          <label className={props.disabled ? styles[`input__title--disabled`]:''}>{props.label}</label>
+          <input className={`${styles.input} ${props.disabled ? styles['input--disabled']:''}`} disabled={props.disabled} type={props.type} onChange={props.onChange}/>
+          <label className={props.disabled ? styles['input__title--disabled']:''}>{props.label}</label>
         </div>
       )}
     </>

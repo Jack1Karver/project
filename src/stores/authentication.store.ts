@@ -1,26 +1,26 @@
-import { makeAutoObservable } from "mobx"
-import { IUser } from "../models/user.model"
+import { makeAutoObservable } from 'mobx';
+import { IUser } from '../models/user.model';
 
 
 class AuthorizationStore {
-    user: IUser = {
-        email: '',
-        secondName: '',
-        name: '',
-        lastName: '',
-        password: '',
-        userName: '',
-    }
+  user: IUser = {
+    email: '',
+    secondName: '',
+    name: '',
+    lastName: '',
+    password: '',
+    userName: '',
+  };
 
-    constructor(){
-        makeAutoObservable(this)
-    }
+  constructor(){
+    makeAutoObservable(this);
+  }
 
-    getToken = ()=>{
-        if(typeof window !== 'undefined'){
-            return localStorage.getItem('Authorization')
-        }
+  getToken = ()=>{
+    if(typeof window !== 'undefined'){
+      return localStorage.getItem('Authorization');
     }
+  };
 }
 
-export default AuthorizationStore
+export default AuthorizationStore;

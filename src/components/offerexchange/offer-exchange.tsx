@@ -5,7 +5,7 @@ import UserStore from '../../stores/user.authorized.store';
 import styles from './scss/offer-exchange.module.scss';
 import { ICoincidence } from '../../interfaces/coincidens.interface';
 import Button from '../button/button';
-import rowStyles from '../rows/scss/rows.module.scss'
+import rowStyles from '../rows/scss/rows.module.scss';
 import { saveExchangeList } from '../../requests/exchange.requests';
 
 enum types {
@@ -14,10 +14,10 @@ enum types {
 }
 
 type OfferExchangeProps = {
-  showMe: (key: number)=>void
-}
+  showMe: (key: number) => void;
+};
 
-const OfferExchange = observer(({showMe}: OfferExchangeProps) => {
+const OfferExchange = observer(({ showMe }: OfferExchangeProps) => {
   const { userAuthorized } = useMemo(() => new UserStore(), []);
   const coincidencesStore = useMemo(() => new CoincidencesStore(userAuthorized?.id), []);
 
@@ -26,12 +26,12 @@ const OfferExchange = observer(({showMe}: OfferExchangeProps) => {
       coincidencesStore.setCoencidences(userAuthorized.id);
     }
   }, [userAuthorized]);
-  console.log(coincidencesStore.coincidences)
+  console.log(coincidencesStore.coincidences);
 
   const startExchange = (row: ICoincidence) => {
-    console.log(row)
-    saveExchangeList(row)
-    showMe(2)
+    console.log(row);
+    saveExchangeList(row);
+    showMe(2);
   };
 
   return (
@@ -41,25 +41,40 @@ const OfferExchange = observer(({showMe}: OfferExchangeProps) => {
           {Object.keys(coincidencesStore.coincidences).map(type => {
             return (
               <>
-                <h3>{types[type]}</h3>
+                <h3>
+                  {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    types[type]
+                  }
+                </h3>
                 <div className={rowStyles.rows}>
-                {coincidencesStore.coincidences![type].map((coinc: ICoincidence) => {
-                  const row = {
-                    userName: coinc.user.userName,
-                    city: coinc.address.addrCity,
-                    rating: coinc.user.rating,
-                  };
-                  return (
-                    <>
-                    <div className={rowStyles.rows__row}>
-                      {Object.values(row).map((value: any) => {
-                        return <div className={rowStyles.rows__value}>{value}</div>;
-                      })}
-                      <Button size={'sm'} mod={'blue'} content={'Начать обмен'} onClick={()=>startExchange(coinc)}/>
-                      </div>
-                    </>
-                  );
-                })}
+                  {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    coincidencesStore.coincidences![type].map((coinc: ICoincidence) => {
+                      const row = {
+                        userName: coinc.user.userName,
+                        city: coinc.address.addrCity,
+                        rating: coinc.user.rating,
+                      };
+                      return (
+                        <>
+                          <div className={rowStyles.rows__row}>
+                            {Object.values(row).map((value, key) => {
+                              return <div className={rowStyles.rows__value} key = {key}>{value}</div>;
+                            })}
+                            <Button
+                              size={'sm'}
+                              mod={'blue'}
+                              content={'Начать обмен'}
+                              onClick={() => startExchange(coinc)}
+                            />
+                          </div>
+                        </>
+                      );
+                    })
+                  }
                 </div>
               </>
             );

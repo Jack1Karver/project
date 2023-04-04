@@ -1,8 +1,7 @@
 import styles from './scss/profile.module.scss';
 import OfferExchange from '../offerexchange/offer-exchange';
 import ActiveExchanges from '../activeexchanges/active-exchanges';
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import CheckboxStore from '../../stores/checkbox.store';
+import { ReactElement, useEffect, useState } from 'react';
 import { IUserExtended } from '../../models/user.model';
 import { observer } from 'mobx-react';
 import ProfileBlock from '../block/profile-block';
@@ -74,9 +73,9 @@ const Profile = observer(({ user }: ProfileBlockProps) => {
       </Container>
       <Container className={styles.profile__content}>
         <>
-        {activeTab?.content}
+          {activeTab?.content}
         </>
-        </Container>
+      </Container>
     </div>
   );
 });

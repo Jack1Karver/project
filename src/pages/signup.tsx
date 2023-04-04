@@ -1,13 +1,13 @@
-import Layout from "../components/layout/layout";
-import SignUp from "../components/signup/signup";
+import Layout from '../components/layout/layout';
+import SignUp from '../components/signup/signup';
 
 
 
 const SignUpPage = () => {
-    return(
+  return(
     <Layout>
-        <SignUp/>
-    </Layout>)
+      <SignUp/>
+    </Layout>);
 };
 
-export default SignUpPage
+export default SignUpPage;

@@ -1,8 +1,5 @@
-import Columns from '../columns/columns';
 import styles from './scss/block.module.scss';
-import Container from '../container/container';
-import { useEffect, useMemo, useState } from 'react';
-import UserStore from '../../stores/user.authorized.store';
+import { useMemo } from 'react';
 import FormStore from '../../stores/form.store';
 import { USER_FIELDS } from '../../config/fields.config';
 import Input from '../input/input';
@@ -21,6 +18,8 @@ const ProfileBlock = observer(({ user }: ProfileBlockProps) => {
   userAuth.createdAt = moment(user.createdAt, 'YYYY-MM-DD').format('DD-MM-YYYY');
   Object.keys(userAuth).map(key => {
     if (formStore.fields[key]) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       formStore.setField(key, userAuth[key]);
     }
   });

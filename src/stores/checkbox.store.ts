@@ -1,19 +1,19 @@
-import { action, makeObservable, observable } from "mobx"
+import { action, makeObservable, observable } from 'mobx';
 
 
 class CheckboxStore{
-    checked: string[] = []
+  checked: string[] = [];
 
-    constructor(){
-        makeObservable(this,{
-            checked: observable,
-            setChecked: action
-        })
-    }
+  constructor(){
+    makeObservable(this,{
+      checked: observable,
+      setChecked: action
+    });
+  }
 
-    setChecked = (checked:string[])=>{
-        this.checked = checked
-    }
+  setChecked = (checked:string[])=>{
+    this.checked = checked;
+  };
 }
 
-export default CheckboxStore
+export default CheckboxStore;

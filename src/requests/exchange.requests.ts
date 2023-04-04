@@ -12,13 +12,13 @@ export const getActiveExchanges = async (idUser: number) => {
 };
 
 export const submitExchangeRequest = async (id: number)=>{
-  await api.post('/exchange/submit', {id})
-}
+  await api.post('/exchange/submit', { id });
+};
 
 export const saveTrackNumberRequest = async (idOffer: number, track: string)=>{
-  await api.post('/exchange/track', {idOffer, track})
-}
+  await api.post('/exchange/track', { idOffer, track });
+};
 
-export const setReceivingRequest = async (idOffer: number)=>{
-  await api.post('/exchange/receiving', {idOffer})
-}
+export const setReceivingRequest = async (idOffer: number, idExchange: number)=>{
+  await api.post('/exchange/receiving', { idOffer, idExchange });
+};

@@ -7,9 +7,6 @@ import UserAuthorizedStore from '../../stores/user.authorized.store';
 import Button from '../button/button';
 import Router from 'next/router';
 import { COMMON_LABELS } from '../../config/labels.config';
-import ButtonLocalization from '../button/button-localization';
-import { useLocale } from '../../hooks/use-locale';
-import { toast } from 'react-toastify';
 
 
 
@@ -30,7 +27,7 @@ const Header = observer(() => {
         <div className={styles.header__login}>
           {userAuthorized ? (
             <>
-              <Link href={{pathname:'/profile/[userName]', query:{userName: `${userAuthorized.userName}`}}}>
+              <Link href={{ pathname:'/profile/[userName]', query:{ userName: `${userAuthorized.userName}` } }}>
                 <a className={styles.header__user}>{userAuthorized.userName}</a>
               </Link>
               <Button size={'xs'} onClick={logout} content={COMMON_LABELS.logout} />

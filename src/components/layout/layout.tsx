@@ -12,9 +12,9 @@ const Layout = ({ children }: LayoutProps):ReactElement => {
     <>
       <Header />
       <main>
-      <Block first={true} mod={'md'}>
-        {children}
-      </Block>
+        <Block first={true} mod={'md'}>
+          {children}
+        </Block>
       </main>
       <Footer />
     </>

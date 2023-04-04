@@ -1,7 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import { makeAutoObservable } from 'mobx';
-import { decode } from 'punycode';
-import { ILoginUser, IUser, IUserExtended } from '../models/user.model';
+import { IUserExtended } from '../models/user.model';
 import { getAuthorizedUserRequest } from '../requests/user.request';
 
 class UserStore {
@@ -18,10 +17,10 @@ class UserStore {
   getAuthorizedUser = async () => {
     const token = localStorage.getItem('Authorization')?.slice(7);
     if (token) {
-      const tokenDecoded = jwtDecode(token) as {userName: string}
-      const user = await getAuthorizedUserRequest(tokenDecoded.userName)
+      const tokenDecoded = jwtDecode(token) as {userName: string};
+      const user = await getAuthorizedUserRequest(tokenDecoded.userName);
       if(user){
-      this.setUserAuthorized(user)
+        this.setUserAuthorized(user);
       }
     }
   };
@@ -31,9 +30,9 @@ class UserStore {
   };
 
   logout = ()=>{
-    localStorage.removeItem('Authorization')
+    localStorage.removeItem('Authorization');
     this.userAuthorized = null;
-  }
+  };
 }
 
 export default UserStore;

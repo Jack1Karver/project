@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './scss/receiving.module.scss';
 import Button from '../button/button';
 import CheckboxTree from 'react-checkbox-tree';
-import { CHECKBOX_TREE } from '../../config/checbox-tree.config';
+import { CHECKBOX_TREE } from '../../config/checkbox-tree.config';
 import CheckboxStore from '../../stores/checkbox.store';
 import { observer } from 'mobx-react';
 
@@ -32,7 +32,7 @@ const Receiving = observer(({ setActive, checkedStore }: ReceivingProps) => {
         <Button content={'Назад'} onClick={goBack} size={'sm'} mod={'blue'} />
         <Button content={'Далее'} onClick={goNext} size={'sm'} mod={'blue'} />
       </div>
-      </div>
+    </div>
   );
 });
 

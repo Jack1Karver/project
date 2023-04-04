@@ -1,8 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import styles from './scss/delivery.module.scss';
 import Button from '../button/button';
 import Input from '../input/input';
-import Container from '../container/container';
 import FormStore from '../../stores/form.store';
 import { ADDRESS_FIELDS } from '../../config/fields.config';
 import InputBlock from '../input/input-block';

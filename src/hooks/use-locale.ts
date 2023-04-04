@@ -1,7 +1,7 @@
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router';
 
 
 export const useLocale = ()=>{
-    const router = useRouter()
-    return router.locale!
-}
+  const router = useRouter();
+  return router.locale!;
+};

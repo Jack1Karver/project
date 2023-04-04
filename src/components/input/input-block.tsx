@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import FormStore from '../../stores/form.store';
 import Input from './input';
 
-import styles from './scss/input.module.scss'
+import styles from './scss/input.module.scss';
 
 type InputBlockProps = {
   formStore: FormStore;
@@ -12,10 +12,10 @@ type InputBlockProps = {
   disabled?: boolean
 };
 
-const InputBlock = observer(({ formStore, titleType, title, disabled = false}: InputBlockProps) => {
+const InputBlock = observer(({ formStore, titleType, title, disabled = false }: InputBlockProps) => {
   return (
     <div className={styles.input__block}>
-    {title ? <h2>{title}</h2>: ''}
+      {title ? <h2>{title}</h2>: ''}
       {Object.keys(formStore.fields).map(key => {
         const params = formStore.fieldsParams[key];
         return (
@@ -31,8 +31,8 @@ const InputBlock = observer(({ formStore, titleType, title, disabled = false}: I
           />
         );
       })}
-      </div>
+    </div>
   );
 });
 
-export default InputBlock
+export default InputBlock;
