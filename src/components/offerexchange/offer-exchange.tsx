@@ -28,9 +28,9 @@ const OfferExchange = observer(({ showMe }: OfferExchangeProps) => {
   }, [userAuthorized]);
   console.log(coincidencesStore.coincidences);
 
-  const startExchange = (row: ICoincidence) => {
+  const startExchange = async (row: ICoincidence) => {
     console.log(row);
-    saveExchangeList(row);
+    await saveExchangeList(row);
     showMe(2);
   };
 

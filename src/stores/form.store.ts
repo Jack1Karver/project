@@ -19,7 +19,7 @@ class FormStore {
     this.fields = Object.keys(this.fieldsParams).reduce((acc, key) => {
       const field: FormFieldState = {
         name: key,
-        value: ' ',
+        value: '',
         error: '',
       };
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -36,10 +36,13 @@ class FormStore {
   };
 
   validateFields = () => {
-    return Object.values(this.fields).every(field => {
-      field.error = validateFormField(this.fieldsParams[field.name], field.value);
-      console.log(field.error);
-      return !field.error;
+    const valid = Object.keys(this.fields).map(name => {
+      this.fields[name].error = validateFormField(this.fieldsParams[name], this.fields[name].value);
+      return !this.fields[name].error;
+    });
+
+    return valid.reduce((prev, next) => {
+      return prev && next;
     });
   };
 

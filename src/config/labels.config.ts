@@ -18,5 +18,5 @@ export const COMMON_LABELS = {
   haveAccount: 'Нет аккаунта?',
   required: 'Обязательно',
   name: 'Имя',
-  wrongFormat: 'Непраильный формат',
+  wrongFormat: 'Неправильный формат',
 };

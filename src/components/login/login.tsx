@@ -20,7 +20,7 @@ const Login = () => {
   const login = async () => {
     const fields = formStore.getFieldsAccumulator();
     const result = await loginRequest(fields as ILoginUser);
-    if (result.error){
+    if (result.status === 401 || result.status == 404){
       toast.error('Неправильное имя пользователя или пароль');
       return;
     }

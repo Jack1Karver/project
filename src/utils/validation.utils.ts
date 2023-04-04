@@ -1,6 +1,8 @@
 import { COMMON_LABELS } from '../config/labels.config';
 import { Field } from '../interfaces/form';
 
+
+
 export const emptyRequired = (field: Field, value: unknown): boolean => {
   return !!field.require && !value;
 };
@@ -13,7 +15,7 @@ export const numberNotValid = (field: Field, value: unknown): boolean => {
   if (field.require && field.validate === 'number' && field.numberOptions && value !== '') {
     const numberParams = field.numberOptions;
     const numberValue = Number(value);
-
+    
     if (
       (numberParams?.min && numberValue < numberParams.min) ||
       (numberParams?.max && numberValue > numberParams.max)
@@ -46,7 +48,9 @@ export const lengthNotValid = (field: Field, value: unknown): boolean => {
  * Returns error message if validation fails.
  */
 export const validateFormField = (field: Field, value: unknown): string => {
-  if (typeof window !== undefined) {
+
+  
+  if(typeof window !== undefined){
     if (emptyRequired(field, value)) {
       return COMMON_LABELS.required;
     }

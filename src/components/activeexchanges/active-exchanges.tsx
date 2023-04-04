@@ -20,19 +20,19 @@ const ActiveExchanges = observer(({ user, active }: ActiveProps) => {
   console.log(exchangeStore.exchanges);
 
   const submitExchange = async (id: number) => {
-    submitExchangeRequest(id);
+    await submitExchangeRequest(id);
     exchangeStore.setActiveExchanges(user.id!);
   };
 
   const saveTrackNumber = async (id: number) => {
     console.log(id);
     const track = formStore.getFieldsAccumulator() as {trackNumber: string};
-    saveTrackNumberRequest(id, track.trackNumber);
+    await saveTrackNumberRequest(id, track.trackNumber);
     exchangeStore.setActiveExchanges(user.id!);
   };
 
   const setReceiving = async (idOffer: number, idExchange: number)=>{
-    setReceivingRequest(idOffer, idExchange);
+    await setReceivingRequest(idOffer, idExchange);
     exchangeStore.setActiveExchanges(user.id!);
   };
 

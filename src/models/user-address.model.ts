@@ -1,6 +1,6 @@
 export interface IUserAddress {
   id: number;
-  udUser: number;
+  idUser: number;
   addrIndex: string;
   addrCity: string;
   addrStreet: string;

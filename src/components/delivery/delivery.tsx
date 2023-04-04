@@ -30,20 +30,20 @@ const delivery = observer(({ setActive, checkedStore }: DeliveryProps) => {
     setIsDefault(!isDefault);
   };
 
-  const goNext = () => {
+  const goNext = async () => {
     if (!userAuthorized) {
       toast.error('Чтобы продолжить авторизуйтесь');
       return;
     }
     const address = addressFormStore.getFieldsAccumulator() as IUserAddress;
-    if (defaultChecked) {
-      address.isDefault = isDefault;
-    }
-    setWish(userAuthorized.id!, checkedStore.checked, address, defaultChecked);
+
+    address.isDefault = isDefault;
+    address.idUser = userAuthorized.id!;
+    console.log(address);
+    await setWish(userAuthorized.id!, checkedStore.checked, address, defaultChecked);
     toast.success('Успешно');
     Router.push('/');
   };
-
 
   const goBack = () => {
     setActive(0);

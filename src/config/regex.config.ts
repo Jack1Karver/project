@@ -4,6 +4,6 @@ export const PASSWORD_REGEX = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]
 
 export const TEXT_REGEX = /^[a-zA-Zа-яА-Я]+$/;
 
-export const ISBN_REGEX= /^[0-9-]+$/;
+export const ISBN_REGEX= /^[0-9-]*$/;
 
 export const HOME_REGEX=/^[0-9]+[a-zA-Zа-яА-Я]?$/;
